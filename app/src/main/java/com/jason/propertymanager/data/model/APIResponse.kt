@@ -1,9 +1,4 @@
-package data
-
-import com.jason.propertymanager.data.model.PictureResponse
-import com.jason.propertymanager.data.model.Property
-import com.jason.propertymanager.data.model.Tenant
-import com.jason.propertymanager.data.model.User
+package com.jason.propertymanager.data.model
 
 
 data class RegisterResponse(

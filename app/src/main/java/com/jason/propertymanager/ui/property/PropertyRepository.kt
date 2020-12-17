@@ -10,8 +10,8 @@ import com.jason.propertymanager.other.get_all_property_success
 import com.jason.propertymanager.other.tag_d
 import com.jason.propertymanager.other.update_property_success
 import com.jason.propertymanager.other.upload_property_success
-import data.GetAllPropertyResponse
-import data.UpdatePropertyResponse
+import com.jason.propertymanager.data.model.GetAllPropertyResponse
+import com.jason.propertymanager.data.model.UpdatePropertyResponse
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -40,7 +40,7 @@ class PropertyRepository : APICallCenter.APICallBack {
         when (message) {
             get_all_property_success -> {
                 val propertyList = (responseBody as? GetAllPropertyResponse)!!.data
-                var tempList: ArrayList<Property> = arrayListOf()
+                val tempList: ArrayList<Property> = arrayListOf()
                 for (property in propertyList) {
                     if (property.userId == userId) {
                         tempList.add(property)

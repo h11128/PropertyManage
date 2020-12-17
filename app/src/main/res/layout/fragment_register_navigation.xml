@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="What type of user you are?"
+        android:text="@string/what_type_of_user_you_are"
         android:textColor="@color/black"
         android:textSize="30sp"
         android:textStyle="bold"

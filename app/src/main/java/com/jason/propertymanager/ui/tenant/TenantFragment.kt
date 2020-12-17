@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.jason.propertymanager.R
 import com.jason.propertymanager.databinding.FragmentTenantBinding
+import com.jason.propertymanager.ui.property.PropertyViewModel
 
 class TenantFragment : Fragment() {
 
@@ -27,7 +28,7 @@ class TenantFragment : Fragment() {
         _binding = FragmentTenantBinding.bind(root)
 
         val textView: TextView = binding.textSlideshow
-        galleryViewModel.text.observe(viewLifecycleOwner, Observer {
+        galleryViewModel.text.observe(viewLifecycleOwner, {
             textView.text = it
         })
         return root

@@ -6,23 +6,20 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.Toast
-import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.jason.propertymanager.R
 import com.jason.propertymanager.databinding.ActivityLoginBinding
 import com.jason.propertymanager.other.password_error
 import com.jason.propertymanager.other.tag_d
-import com.jason.propertymanager.ui.auth.UserViewModel
-import com.jason.propertymanager.ui.home.MainActivity
 import com.jason.propertymanager.other.url_logo
 import com.jason.propertymanager.other.username_error
+import com.jason.propertymanager.ui.auth.UserViewModel
 import com.jason.propertymanager.ui.auth.register.RegisterActivity
+import com.jason.propertymanager.ui.home.MainActivity
 import com.squareup.picasso.Picasso
 
 class LoginActivity : AppCompatActivity() {
@@ -40,7 +37,7 @@ class LoginActivity : AppCompatActivity() {
     }
     private fun initViewModel(){
         userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
-        userViewModel.currentUser.observe(this, Observer {
+        userViewModel.currentUser.observe(this, {
             if (it != null) {
                 //val user = it[0]
                 loginSuccess("email ${it.email} name ${it.name}")
@@ -51,7 +48,7 @@ class LoginActivity : AppCompatActivity() {
             }
 
         })
-        userViewModel.showMessage.observe(this, Observer {
+        userViewModel.showMessage.observe(this, {
             if (it!=null){
                 Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
                 userViewModel.showMessage.value = null
@@ -96,17 +93,17 @@ class LoginActivity : AppCompatActivity() {
             userViewModel.userNameValid.observe(this, {
                 login.isEnabled = it
                 if (!it) {
-                    username.error = username_error
+                    username.error = getString(R.string.invalid_username)
                 }
                 else{
                     username.error = null
                 }
             })
 
-            userViewModel.passwordValid.observe(this, Observer {
+            userViewModel.passwordValid.observe(this, {
                 login.isEnabled = it
                 if (!it) {
-                    password.error = password_error
+                    password.error = getString(R.string.invalid_password)
                 }
                 else{
                     password.error = null

@@ -133,7 +133,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="add photo"
-                android:drawableLeft="@drawable/ic_menu_camera"
+                android:drawableStart="@drawable/ic_menu_camera"
                 android:drawableTint="@color/white"/>
 
 

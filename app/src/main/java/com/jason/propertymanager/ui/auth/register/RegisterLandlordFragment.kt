@@ -4,12 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
 import com.jason.propertymanager.R
 import com.jason.propertymanager.data.model.RegisterBody
 import com.jason.propertymanager.databinding.FragmentRegisterLanlordBinding
@@ -19,7 +18,7 @@ import com.jason.propertymanager.ui.auth.UserViewModel
 import com.jason.propertymanager.ui.auth.login.LoginActivity
 
 
-class RegisterLanlordFragment : Fragment() {
+class RegisterLandlordFragment : Fragment() {
     private var _binding: FragmentRegisterLanlordBinding? = null
     private val binding get() = _binding!!
     private val userViewModel: UserViewModel by activityViewModels()
@@ -38,7 +37,7 @@ class RegisterLanlordFragment : Fragment() {
     }
 
     private fun init() {
-        userViewModel.showMessage.observe(viewLifecycleOwner, Observer {
+        userViewModel.showMessage.observe(viewLifecycleOwner, {
             if (it != null && it.contains(register_success)){
                 Handler().postDelayed({activity?.finish()}, 1000L)
             }

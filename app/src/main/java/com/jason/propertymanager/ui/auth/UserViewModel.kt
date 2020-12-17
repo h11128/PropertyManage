@@ -12,7 +12,7 @@ import com.jason.propertymanager.other.tag_d
 import kotlinx.coroutines.launch
 
 
-class UserViewModel() : ViewModel(), UserRepository.RepoCallBack {
+class UserViewModel : ViewModel(), UserRepository.RepoCallBack {
 
     private val userRepository = UserRepository().apply {
         repoCallBack = this@UserViewModel

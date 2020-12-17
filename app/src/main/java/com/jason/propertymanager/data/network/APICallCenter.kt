@@ -1,9 +1,7 @@
 package com.jason.propertymanager.data.network
 
-import android.util.Log
 import com.jason.propertymanager.data.model.*
 import com.jason.propertymanager.other.*
-import data.*
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -12,9 +10,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.InputStream
-
-const val result_success = 1
-const val result_fail = 0
 
 class APICallCenter {
 
@@ -25,7 +20,7 @@ class APICallCenter {
 
 
     companion object {
-        val api = PropertyApi()
+        private val api = PropertyApi()
         //var _callback: APICallBack? = null
         //val callback get() = _callback!!
 

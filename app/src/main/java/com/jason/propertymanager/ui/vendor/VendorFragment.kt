@@ -9,9 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.jason.propertymanager.R
-import com.jason.propertymanager.databinding.FragmentTransactionBinding
 import com.jason.propertymanager.databinding.FragmentVendorBinding
-import com.jason.propertymanager.ui.tenant.PropertyViewModel
+import com.jason.propertymanager.ui.property.PropertyViewModel
 
 class VendorFragment : Fragment() {
 
@@ -28,7 +27,7 @@ class VendorFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_vendor, container, false)
         _binding = FragmentVendorBinding.bind(root)
         val textView: TextView = binding.textSlideshow
-        galleryViewModel.text.observe(viewLifecycleOwner, Observer {
+        galleryViewModel.text.observe(viewLifecycleOwner, {
             textView.text = it
         })
         return root

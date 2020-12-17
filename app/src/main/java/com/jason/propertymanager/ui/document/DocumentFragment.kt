@@ -10,8 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.jason.propertymanager.R
 import com.jason.propertymanager.databinding.FragmentDocumentBinding
-import com.jason.propertymanager.databinding.FragmentHomeBinding
-import com.jason.propertymanager.ui.tenant.PropertyViewModel
+import com.jason.propertymanager.ui.property.PropertyViewModel
 
 class DocumentFragment : Fragment() {
 
@@ -29,7 +28,7 @@ class DocumentFragment : Fragment() {
         _binding = FragmentDocumentBinding.bind(root)
         val textView: TextView = binding.textGallery
 
-        galleryViewModel.text.observe(viewLifecycleOwner, Observer {
+        galleryViewModel.text.observe(viewLifecycleOwner, {
             textView.text = it
         })
         return root

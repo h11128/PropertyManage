@@ -2,7 +2,6 @@ package com.jason.propertymanager.ui.auth.register
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.jason.propertymanager.R
 import com.jason.propertymanager.databinding.ActivityRegisterBinding
@@ -20,7 +19,7 @@ class RegisterActivity : AppCompatActivity() {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
         userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
-        userViewModel.registerType.observe(this, Observer {
+        userViewModel.registerType.observe(this, {
             when (it) {
                 id_tenant -> {
                     supportFragmentManager.beginTransaction()
@@ -29,7 +28,7 @@ class RegisterActivity : AppCompatActivity() {
                 }
                 id_vendor, id_manager, id_landlord -> {
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.frame_container, RegisterLanlordFragment())
+                        .replace(R.id.frame_container, RegisterLandlordFragment())
                         .commitNow()
                 }
                 else -> {

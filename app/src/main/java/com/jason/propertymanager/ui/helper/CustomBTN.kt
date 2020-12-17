@@ -9,12 +9,12 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.jason.propertymanager.R
 import com.jason.propertymanager.databinding.CustomButtonTextNumberBinding
 
-class CustomBTN(var mContext: Context, var attrs: AttributeSet? = null) : ConstraintLayout(mContext, attrs) {
+class CustomBTN(mContext: Context, attrs: AttributeSet? = null) : ConstraintLayout(mContext, attrs) {
     private var _binding: CustomButtonTextNumberBinding? = null
     val binding get() = _binding!!
-    val imageView: ImageView
-    val textTitle: TextView
-    val textNumber: TextView
+    private val imageView: ImageView
+    private val textTitle: TextView
+    private val textNumber: TextView
     var number: Int = 0
         set(value) {
             field = value

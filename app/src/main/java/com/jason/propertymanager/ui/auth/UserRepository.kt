@@ -7,13 +7,13 @@ import com.jason.propertymanager.data.model.User
 import com.jason.propertymanager.data.network.APICallCenter
 import com.jason.propertymanager.other.login_success
 import com.jason.propertymanager.other.register_success
-import data.LoginResponse
-import data.RegisterResponse
+import com.jason.propertymanager.data.model.LoginResponse
+import com.jason.propertymanager.data.model.RegisterResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 
-class UserRepository() : APICallCenter.APICallBack {
+class UserRepository : APICallCenter.APICallBack {
     var repoCallBack: RepoCallBack? = null
     private val userDao = AppDataBase.getDataBase().userDao()
     fun login(loginBody: LoginBody) {

@@ -18,10 +18,6 @@ class RegisterNavigationFragment : Fragment() {
     private var _binding: FragmentRegisterNavigationBinding? = null
     private val binding get() = _binding!!
     private val userViewModel: UserViewModel by activityViewModels()
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

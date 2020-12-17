@@ -1,4 +1,4 @@
-package com.jason.propertymanager.ui.tenant
+package com.jason.propertymanager.ui.property
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -7,7 +7,6 @@ import androidx.lifecycle.viewModelScope
 import com.jason.propertymanager.data.model.Property
 import com.jason.propertymanager.data.model.UploadPropertyBody
 import com.jason.propertymanager.data.model.User
-import com.jason.propertymanager.ui.property.PropertyRepository
 import kotlinx.coroutines.launch
 import java.io.InputStream
 

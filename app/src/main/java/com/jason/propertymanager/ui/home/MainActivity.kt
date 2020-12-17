@@ -5,18 +5,14 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.jason.propertymanager.R
 import com.jason.propertymanager.data.model.User
@@ -27,8 +23,7 @@ import com.jason.propertymanager.other.tag_d
 import com.jason.propertymanager.ui.auth.UserViewModel
 import com.jason.propertymanager.ui.auth.login.LoginActivity
 import com.jason.propertymanager.ui.property.PropertyAddFragment
-import com.jason.propertymanager.ui.tenant.PropertyViewModel
-import java.io.File
+import com.jason.propertymanager.ui.property.PropertyViewModel
 
 
 class MainActivity : AppCompatActivity() {
@@ -83,7 +78,7 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
         userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
-        userViewModel.currentUser.observe(this, Observer {
+        userViewModel.currentUser.observe(this, {
             if (it!= null){
                 user = it
                 navHeaderMainBinding.apply {
@@ -101,7 +96,7 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-    fun selectImage(){
+    private fun selectImage(){
         val intent = Intent()
         intent.type = "image/*"
         intent.action = Intent.ACTION_GET_CONTENT

@@ -2,7 +2,6 @@ package com.jason.propertymanager.data.local
 
 import android.content.Context
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.room.*
 import com.jason.propertymanager.MyApplication
 import com.jason.propertymanager.data.model.Property

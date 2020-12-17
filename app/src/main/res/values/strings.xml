@@ -45,4 +45,7 @@
     <string name="name">name</string>
     <string name="add_property">add property</string>
     <string name="delete_property">delete property</string>
+    <string name="fab">fab</string>
+    <string name="what_type_of_user_you_are">What type of user you are?</string>
+    <string name="modify_property">modify property</string>
 </resources>

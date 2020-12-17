@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -33,13 +32,13 @@ class HomeFragment : Fragment() {
         navController = activity?.findNavController(R.id.nav_host_fragment)!!
         initButton()
 
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
+        homeViewModel.text.observe(viewLifecycleOwner, {
             textView.text = it
         })
         return root
     }
 
-    fun initButton(){
+    private fun initButton(){
         binding.customBTNProperty.setClickListener {
             navController.navigate(R.id.action_to_property)
         }

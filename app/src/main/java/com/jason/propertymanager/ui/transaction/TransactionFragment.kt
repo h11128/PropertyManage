@@ -6,10 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.jason.propertymanager.R
-import com.jason.propertymanager.databinding.FragmentTodoBinding
 import com.jason.propertymanager.databinding.FragmentTransactionBinding
 
 class TransactionFragment : Fragment() {
@@ -27,7 +25,7 @@ class TransactionFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_transaction, container, false)
         _binding = FragmentTransactionBinding.bind(root)
         val textView: TextView = binding.textSlideshow
-        transactionViewModel.text.observe(viewLifecycleOwner, Observer {
+        transactionViewModel.text.observe(viewLifecycleOwner, {
             textView.text = it
         })
         return root

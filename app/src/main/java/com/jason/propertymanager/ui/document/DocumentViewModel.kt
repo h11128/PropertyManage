@@ -1,4 +1,4 @@
-package com.jason.propertymanager.ui.tenant
+package com.jason.propertymanager.ui.document
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
