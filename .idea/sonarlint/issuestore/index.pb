@@ -1,0 +1,27 @@
+
+@
+app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
+t
+Dapp/src/main/java/com/jason/propertymanager/ui/rent/RentViewModel.kt,6\7\677d056fa0d767879b0ded4bd5a2e2534cbb0a41
+t
+Dapp/src/main/java/com/jason/propertymanager/ui/todo/TodoViewModel.kt,1\8\189a472be9069ad9a86adeca927068067dbe31ae
+x
+Happ/src/main/java/com/jason/propertymanager/ui/vendor/VendorViewModel.kt,d\5\d503d43214a90a4609318baf65f8915cfb82355b
+{
+Kapp/src/main/java/com/jason/propertymanager/ui/property/PropertyFragment.kt,1\4\146ebccc59683645ebccf97a15675bff7e24f27e
+w
+Gapp/src/main/java/com/jason/propertymanager/ui/tenant/TenantFragment.kt,a\6\a6d8c69d40e4443d997b963988ed329efd9d9caf
+s
+Capp/src/main/java/com/jason/propertymanager/ui/rent/RentFragment.kt,a\a\aa1449824a76f7c3735d3b16c1aaf883abf12d85
+s
+Capp/src/main/java/com/jason/propertymanager/ui/todo/ToDoFragment.kt,a\2\a226e4bed68cb4be6cbf884f53c5451704ba7fce
+Å
+Qapp/src/main/java/com/jason/propertymanager/ui/transaction/TransactionFragment.kt,d\5\d5a494d1037c399ede40aabd179ad52de90e572a
+w
+Gapp/src/main/java/com/jason/propertymanager/ui/vendor/VendorFragment.kt,a\f\afa61471fc917dc546a0ba14688212ce93cba4fe
+s
+Capp/src/main/java/com/jason/propertymanager/ui/home/HomeFragment.kt,9\f\9fd5d7eefa5aa7083f380300dea2bf04c1c30478
+{
+Kapp/src/main/java/com/jason/propertymanager/ui/document/DocumentFragment.kt,d\d\dd45d4ae0d4eaa92909eed64432df57009868af0
+P
+ app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e

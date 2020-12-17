@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="login">login</string>
+    <string name="already_register_login">Already register? Login</string>
+    <string name="collect_rent">Collect Rent</string>
+</resources>

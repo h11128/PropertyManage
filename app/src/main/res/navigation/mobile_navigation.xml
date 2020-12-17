@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.jason.propertymanager.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_to_property"
+            app:destination="@id/nav_property" />
+        <action
+            android:id="@+id/action_to_tenant"
+            app:destination="@id/nav_tenant" />
+        <action
+            android:id="@+id/action_to_transaction"
+            app:destination="@id/nav_transaction" />
+        <action
+            android:id="@+id/action_to_rent"
+            app:destination="@id/nav_rent" />
+        <action
+            android:id="@+id/action_to_todo"
+            app:destination="@id/nav_todo" />
+
+        <action
+            android:id="@+id/action_to_document"
+            app:destination="@id/nav_document" />
+        <action
+            android:id="@+id/action_to_vendor"
+            app:destination="@id/nav_vendor" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_document"
+        android:name="com.jason.propertymanager.ui.document.DocumentFragment"
+        android:label="@string/menu_document"
+        tools:layout="@layout/fragment_document" />
+
+    <fragment
+        android:id="@+id/nav_tenant"
+        android:name="com.jason.propertymanager.ui.tenant.TenantFragment"
+        android:label="@string/menu_tenant"
+        tools:layout="@layout/fragment_tenant" />
+
+    <fragment
+        android:id="@+id/nav_rent"
+        android:name="com.jason.propertymanager.ui.rent.RentFragment"
+        android:label="@string/menu_rent"
+        tools:layout="@layout/fragment_rent" />
+
+    <fragment
+        android:id="@+id/nav_property"
+        android:name="com.jason.propertymanager.ui.property.PropertyFragment"
+        android:label="@string/menu_property"
+        tools:layout="@layout/fragment_property" />
+
+    <fragment
+        android:id="@+id/nav_todo"
+        android:name="com.jason.propertymanager.ui.todo.ToDoFragment"
+        android:label="@string/menu_todo"
+        tools:layout="@layout/fragment_todo" />
+
+    <fragment
+        android:id="@+id/nav_transaction"
+        android:name="com.jason.propertymanager.ui.transaction.TransactionFragment"
+        android:label="@string/menu_transaction"
+        tools:layout="@layout/fragment_transaction" />
+
+    <fragment
+        android:id="@+id/nav_vendor"
+        android:name="com.jason.propertymanager.ui.vendor.VendorFragment"
+        android:label="@string/menu_vendor"
+        tools:layout="@layout/fragment_vendor" />
+</navigation>

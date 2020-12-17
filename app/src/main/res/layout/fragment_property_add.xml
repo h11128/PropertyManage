@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.property.PropertyAddFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+        <LinearLayout
+            android:id="@+id/linear_add_property_step1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Step 1:"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/blue_grey"
+                android:background="@drawable/shape_frame"
+                android:textStyle="bold">
+
+            </TextView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="step1 hint"
+                android:backgroundTint="@color/blue_grey"
+                android:background="@drawable/shape_frame">
+
+            </TextView>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="address"
+                android:inputType="text">
+
+            </EditText>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="city"
+                android:inputType="text">
+
+            </EditText>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="state/province"
+                android:inputType="text">
+
+            </EditText>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="zipCode"
+                android:inputType="text">
+
+            </EditText>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Country"
+                android:inputType="text">
+
+            </EditText>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/linear_add_property_step2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/linear_add_property_step1">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Step 2:"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/blue_grey"
+                android:background="@drawable/shape_frame"
+                android:textStyle="bold">
+
+            </TextView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="step2 hint"
+                android:backgroundTint="@color/blue_grey"
+                android:background="@drawable/shape_frame">
+
+            </TextView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Status"
+                    android:textSize="20sp">
+
+                </TextView>
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </Spinner>
+            </LinearLayout>
+
+
+
+            <CheckBox
+                android:text="Multiple Units"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </CheckBox>
+
+            <CheckBox
+                android:text="Exclude from dashboard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </CheckBox>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="add photo"
+                android:drawableLeft="@drawable/ic_menu_camera"
+                android:drawableTint="@color/white"/>
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/linear_add_property_step3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/linear_add_property_step2">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Step 3:"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/blue_grey"
+                android:background="@drawable/shape_frame"
+                android:textStyle="bold">
+
+            </TextView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="step3 hint"
+                android:backgroundTint="@color/blue_grey"
+                android:background="@drawable/shape_frame">
+
+            </TextView>
+
+            <CheckBox
+                android:text="Mortage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </CheckBox>
+
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/customBTN_self">
+    <ImageView
+        android:id="@+id/imageButton_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_menu_camera"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/text_btn_title"
+        android:backgroundTint="@color/white"
+        android:contentDescription="@string/image_of_button"
+        >
+
+    </ImageView>
+    <TextView
+        android:id="@+id/text_btn_number"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:background="@drawable/shape_circle"
+        android:gravity="center"
+        android:text="@string/initial_text"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:visibility="gone"/>
+    <TextView
+        android:id="@+id/text_btn_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/this_is_random_string"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@id/imageButton_btn"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+    </TextView>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

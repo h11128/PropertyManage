@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="CustomBTN">
+        <attr name="buttonSrc" format="reference" />
+        <attr name="buttonTitle" format="string" />
+
+    </declare-styleable>
+
+</resources>

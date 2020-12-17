@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.home.HomeFragment"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <TextView
+            android:id="@+id/text_home"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@id/text_home"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/linear_home_button_line1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3"
+            app:layout_constraintBottom_toTopOf="@id/linear_home_button_line2"
+            app:layout_constraintTop_toBottomOf="@id/text_home">
+
+            <com.jason.propertymanager.ui.helper.CustomBTN
+                android:id="@+id/customBTN_alert"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:buttonSrc="@drawable/ic_baseline_alert_24"
+                app:buttonTitle="Alert" />
+            <com.jason.propertymanager.ui.helper.CustomBTN
+                android:id="@+id/customBTN_property"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:buttonSrc="@drawable/ic_baseline_property_24"
+                app:buttonTitle="Property" />
+            <com.jason.propertymanager.ui.helper.CustomBTN
+                android:id="@+id/customBTN_tenant"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:buttonSrc="@drawable/ic_baseline_tenant_24"
+                app:buttonTitle="Tenant" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/linear_home_button_line2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3"
+
+            app:layout_constraintTop_toBottomOf="@id/linear_home_button_line1">
+
+            <com.jason.propertymanager.ui.helper.CustomBTN
+                android:id="@+id/customBTN_transaction"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:buttonSrc="@drawable/ic_baseline_transaction_24"
+                app:buttonTitle="Transaction" />
+            <com.jason.propertymanager.ui.helper.CustomBTN
+                android:id="@+id/customBTN_collect_rent"
+
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:buttonSrc="@drawable/ic_baseline_collect_rent_24"
+                app:buttonTitle="Collect Rent" />
+            <com.jason.propertymanager.ui.helper.CustomBTN
+                android:id="@+id/customBTN_todo"
+
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:buttonSrc="@drawable/ic_baseline_todo_24"
+                app:buttonTitle="Todo" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/linear_home_button_line3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3"
+            app:layout_constraintTop_toBottomOf="@id/linear_home_button_line2">
+
+            <com.jason.propertymanager.ui.helper.CustomBTN
+                android:id="@+id/customBTN_trips"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:buttonSrc="@drawable/ic_baseline_trip_24"
+                app:buttonTitle="Trips" />
+            <com.jason.propertymanager.ui.helper.CustomBTN
+                android:id="@+id/customBTN_document"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:buttonSrc="@drawable/ic_baseline_document_24"
+                app:buttonTitle="Document" />
+            <com.jason.propertymanager.ui.helper.CustomBTN
+                android:id="@+id/customBTN_vendors"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:buttonSrc="@drawable/ic_baseline_vendors_24"
+                app:buttonTitle="Vendors" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
