@@ -56,6 +56,9 @@ interface PropertyApi{
     @GET(endpoint_all_property)
     fun getAllProperty(): Call<GetAllPropertyResponse>
 
+    @POST(endpoint_all_property)
+    fun uploadProperty(@Body body: UploadPropertyBody): Call<UpdatePropertyResponse>
+
     @PUT(endpoint_update_property)
     fun updateProperty(@Path("id") id: String, @Body body: Property): Call<UpdatePropertyResponse>
 
@@ -75,8 +78,8 @@ interface PropertyApi{
     @POST(endpoint_upload_picture)
     fun uploadPicture(@Part part : MultipartBody.Part): Call<UploadPictureResponse>
 
-    @POST(endpoint_upload_picture)
-    fun uploadPicture(@Part("image") part : RequestBody): Call<UploadPictureResponse>
+    //@POST(endpoint_upload_picture)
+    //fun uploadPicture(@Part("image") part : RequestBody): Call<UploadPictureResponse>
 
 
 

@@ -12,6 +12,22 @@ data class LoginBody(
     val password: String
 )
 
+data class UploadPropertyBody(
+    val __v: Int,
+    val address: String,
+    val city: String,
+    val country: String,
+    val image: String,
+    val latitude: String,
+    val longitude: String,
+    val mortageInfo: Boolean,
+    val propertyStatus: Boolean,
+    val purchasePrice: String,
+    val state: String,
+    val userId: String,
+    val userType: String
+)
+
 data class UpdateUserBody(
     val __v: Int,
     val createdAt: String,

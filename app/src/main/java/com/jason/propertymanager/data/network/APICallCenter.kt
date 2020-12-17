@@ -1,10 +1,7 @@
 package com.jason.propertymanager.data.network
 
 import android.util.Log
-import com.jason.propertymanager.data.model.LoginBody
-import com.jason.propertymanager.data.model.Property
-import com.jason.propertymanager.data.model.RegisterBody
-import com.jason.propertymanager.data.model.UpdateUserBody
+import com.jason.propertymanager.data.model.*
 import com.jason.propertymanager.other.*
 import data.*
 import okhttp3.MediaType
@@ -126,9 +123,9 @@ class APICallCenter {
             })
         }
 
-        fun updateProperty(callback: APICallBack, property: Property) {
+        fun uploadProperty(callback: APICallBack, uploadPropertyBody: UploadPropertyBody) {
             val messageCode = update_property_success
-            api.updateProperty(property._id, property).enqueue(object :
+            api.uploadProperty(uploadPropertyBody).enqueue(object :
                 Callback<UpdatePropertyResponse> {
                 override fun onResponse(
                     call: Call<UpdatePropertyResponse>,

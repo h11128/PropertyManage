@@ -5,13 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jason.propertymanager.data.model.Property
+import com.jason.propertymanager.data.model.UploadPropertyBody
 import com.jason.propertymanager.data.model.User
 import com.jason.propertymanager.ui.property.PropertyRepository
-import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import java.io.File
 import java.io.InputStream
 
 class PropertyViewModel : ViewModel(), PropertyRepository.RepoCallBack {
@@ -21,7 +18,7 @@ class PropertyViewModel : ViewModel(), PropertyRepository.RepoCallBack {
     }
     val property =  MutableLiveData<List<Property>>()
     val text: LiveData<String> = _text
-    val repo = PropertyRepository().apply {
+    private val repo = PropertyRepository().apply {
         repoCallBack = this@PropertyViewModel
     }
 
@@ -36,20 +33,30 @@ class PropertyViewModel : ViewModel(), PropertyRepository.RepoCallBack {
         }
     }
 
+    // get property online, save it in database
     fun getMyProperty(user: User){
         viewModelScope.launch {
             repo.getMyProperty(user)
         }
     }
 
-    override fun updateMyProperty(propertyList: List<Property>) {
+    fun addProperty(uploadPropertyBody: UploadPropertyBody){
         viewModelScope.launch {
-            repo.saveAllProperty(propertyList)
+            repo.uploadProperty(uploadPropertyBody)
         }
+    }
+
+    override fun onPropertyChange() {
         refreshProperty()
     }
 
-    fun refreshProperty(){
+    override fun onUpdateSuccess(property: Property) {
+        viewModelScope.launch {
+            repo.insertProperty(property)
+        }
+    }
+
+    private fun refreshProperty(){
         viewModelScope.launch {
             property.value = repo.readAllProperty()
         }
