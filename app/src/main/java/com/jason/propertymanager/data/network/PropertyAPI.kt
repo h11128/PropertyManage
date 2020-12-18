@@ -74,7 +74,7 @@ interface PropertyApi{
 
     @Multipart
     @POST(endpoint_upload_picture)
-    fun uploadPicture(@Part part : MultipartBody.Part): Call<UploadPictureResponse>
+    fun uploadImage(@Part part : MultipartBody.Part): Call<UploadPictureResponse>
 
     //@POST(endpoint_upload_picture)
     //fun uploadPicture(@Part("image") part : RequestBody): Call<UploadPictureResponse>

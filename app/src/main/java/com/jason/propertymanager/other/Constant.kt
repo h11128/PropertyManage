@@ -18,3 +18,8 @@ const val get_all_property_success = "get all property success"
 const val update_property_success = "update property success"
 const val upload_property_success = "upload property success"
 const val delete_property_success = "delete property success"
+
+const val load_status_1 = "Fetching Url from API"
+const val load_status_2 = "Loading Image from Url"
+const val load_status_4 = "Load Image Success"
+const val load_status_5 = "Load Image Failed"

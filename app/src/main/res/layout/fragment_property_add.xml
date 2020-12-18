@@ -80,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_menu_camera"
                 android:drawableTint="@color/white"
-                android:text="get current location" />
+                android:text="@string/get_current_location" />
         </LinearLayout>
 
         <LinearLayout
@@ -184,9 +184,10 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_property_image_list"
                 android:layout_width="wrap_content"
-                android:layout_height="100dp"
-                android:orientation="vertical"
-                android:visibility="gone">
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:scrollbars="horizontal"
+                android:orientation="horizontal">
 
             </androidx.recyclerview.widget.RecyclerView>
 

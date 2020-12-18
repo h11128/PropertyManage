@@ -18,6 +18,7 @@ import com.jason.propertymanager.data.model.User
 import com.jason.propertymanager.databinding.FragmentPropertyAddBinding
 import com.jason.propertymanager.other.REQUEST_CODE_LOAD_IMAGE
 import com.jason.propertymanager.other.default_string
+import com.jason.propertymanager.other.load_status_1
 import com.jason.propertymanager.other.tag_d
 import com.jason.propertymanager.ui.home.MainActivity
 
@@ -59,10 +60,10 @@ class PropertyAddFragment : Fragment() {
         imageListAdapter = ImageListAdapter()
         binding.recyclerPropertyImageList.apply {
             adapter = imageListAdapter
-            layoutManager = LinearLayoutManager(requireContext())
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         }
-        /*propertyViewModel.imageList.observe(viewLifecycleOwner, {
-            imageListAdapter.refreshDataList(it!! as ArrayList<String>)
+        propertyViewModel.imageList.observe(viewLifecycleOwner, {
+            imageListAdapter.refreshDataList(it!!)
             Log.d(tag_d, "observe imageList, size ${it.size}")
             if (it.isNotEmpty()){
                 binding.recyclerPropertyImageList.visibility = View.VISIBLE
@@ -71,9 +72,9 @@ class PropertyAddFragment : Fragment() {
                 binding.recyclerPropertyImageList.visibility = View.GONE
 
             }
-        })*/
+        })
 
-        propertyViewModel.imageListSize.observe(viewLifecycleOwner, {
+/*        propertyViewModel.imageListSize.observe(viewLifecycleOwner, {
             imageListAdapter.refreshDataList(propertyViewModel.imageList)
             Log.d(tag_d, "observe imageList, size ${it}")
             if (it > 0){
@@ -83,10 +84,11 @@ class PropertyAddFragment : Fragment() {
                 binding.recyclerPropertyImageList.visibility = View.GONE
 
             }
-        })
+        })*/
 
         binding.buttonAddPhoto.setOnClickListener {
             selectImage()
+
         }
         binding.buttonSubmit.setOnClickListener {
             val address = binding.editAddress.text.toString()
@@ -132,7 +134,8 @@ class PropertyAddFragment : Fragment() {
             val uri = data?.data
             if (uri != null) {
                 val inputSteam = activity?.contentResolver?.openInputStream(uri)
-                val propertyViewModel = ViewModelProvider(this).get(PropertyViewModel::class.java)
+                imageListAdapter.updateItem(imageListAdapter.itemCount, load_status_1)
+                binding.recyclerPropertyImageList.scrollToPosition(imageListAdapter.itemCount)
                 propertyViewModel.upload(inputSteam!!)
             }
         }

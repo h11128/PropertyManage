@@ -120,7 +120,7 @@ class APICallCenter {
         }
 
         fun uploadProperty(callback: APICallBack, uploadPropertyBody: UploadPropertyBody) {
-            val messageCode = update_property_success
+            val messageCode = upload_property_success
             api.uploadProperty(uploadPropertyBody).enqueue(object :
                 Callback<UpdatePropertyResponse> {
                 override fun onResponse(
@@ -197,9 +197,8 @@ class APICallCenter {
             val requestFile = RequestBody.create(MediaType.parse("image/*"), image.readBytes())
             //val requestFile = RequestBodyUtil.create(MediaType.parse("image/*"), image)
             //val requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), image)
-            Log.d(tag_d, "anasd")
             val body = MultipartBody.Part.createFormData("image", "abac.jpg", requestFile)
-            api.uploadPicture(body).enqueue(object : Callback<UploadPictureResponse> {
+            api.uploadImage(body).enqueue(object : Callback<UploadPictureResponse> {
                 override fun onResponse(
                     call: Call<UploadPictureResponse>,
                     response: Response<UploadPictureResponse>

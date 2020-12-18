@@ -92,10 +92,10 @@ class PropertyRepository : APICallCenter.APICallBack {
         readAllProperty()
     }
 
-    fun uploadImage(file: InputStream) {
-
-        APICallCenter.uploadImage(instance, file)
-
+    suspend fun uploadImage(file: InputStream) {
+        withContext(Dispatchers.IO) {
+            APICallCenter.uploadImage(instance, file)
+        }
 
     }
 
@@ -111,8 +111,6 @@ class PropertyRepository : APICallCenter.APICallBack {
             APICallCenter.uploadProperty(instance, uploadPropertyBody)
         }
     }
-
-
 
 
 }

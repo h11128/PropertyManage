@@ -17,35 +17,33 @@ class PropertyViewModel : ViewModel(), PropertyRepository.RepoCallBack {
     private val _text = MutableLiveData<String>().apply {
         value = "This is gallery Fragment"
     }
-    val property =  MutableLiveData<List<Property>>()
+    val property = MutableLiveData<List<Property>>()
     val text: LiveData<String> = _text
-    var imageList = ArrayList<String>()
-    var imageListSize = MutableLiveData<Int>()
+    var imageList = MutableLiveData<ArrayList<String>>()
     private val repo = PropertyRepository().apply {
         repoCallBack = this@PropertyViewModel
     }
 
     init {
         property.value = arrayListOf()
-        imageListSize.value = imageList.size
+        imageList.value = arrayListOf()
         refreshProperty()
-        Log.d(tag_d, "ac")
     }
 
     fun upload(file: InputStream) {
-
-        repo.uploadImage(file)
-
+        viewModelScope.launch {
+            repo.uploadImage(file)
+        }
     }
 
     // get property online, save it in database
-    fun getMyProperty(user: User){
+    fun getMyProperty(user: User) {
         viewModelScope.launch {
             repo.getMyProperty(user)
         }
     }
 
-    fun addProperty(uploadPropertyBody: UploadPropertyBody){
+    fun addProperty(uploadPropertyBody: UploadPropertyBody) {
         viewModelScope.launch {
             repo.uploadProperty(uploadPropertyBody)
         }
@@ -62,13 +60,14 @@ class PropertyViewModel : ViewModel(), PropertyRepository.RepoCallBack {
     }
 
     override fun onUploadImageSuccess(url: String) {
-        imageList.add(url)
+        val temp = imageList.value!!
+        temp[temp.size - 1] = url
+        imageList.value = temp
         //imageList.value = temp as List<String>
-        imageListSize.value = imageList.size
-        Log.d(tag_d, "add $url in imageList, size ${imageList.size}")
+        Log.d(tag_d, "add $url in imageList, size ${imageList.value?.size}")
     }
 
-    private fun refreshProperty(){
+    private fun refreshProperty() {
         viewModelScope.launch {
             property.value = repo.readAllProperty()
         }
