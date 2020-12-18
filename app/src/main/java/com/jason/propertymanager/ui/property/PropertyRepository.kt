@@ -2,16 +2,9 @@ package com.jason.propertymanager.ui.property
 
 import android.util.Log
 import com.jason.propertymanager.data.local.AppDataBase
-import com.jason.propertymanager.data.model.Property
-import com.jason.propertymanager.data.model.UploadPropertyBody
-import com.jason.propertymanager.data.model.User
+import com.jason.propertymanager.data.model.*
 import com.jason.propertymanager.data.network.APICallCenter
-import com.jason.propertymanager.other.get_all_property_success
-import com.jason.propertymanager.other.tag_d
-import com.jason.propertymanager.other.update_property_success
-import com.jason.propertymanager.other.upload_property_success
-import com.jason.propertymanager.data.model.GetAllPropertyResponse
-import com.jason.propertymanager.data.model.UpdatePropertyResponse
+import com.jason.propertymanager.other.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -33,6 +26,7 @@ class PropertyRepository : APICallCenter.APICallBack {
     interface RepoCallBack {
         fun onPropertyChange()
         fun onUpdateSuccess(property: Property)
+        fun onUploadImageSuccess(url: String)
     }
 
     override fun notify(message: String?, responseBody: Any?) {
@@ -53,6 +47,11 @@ class PropertyRepository : APICallCenter.APICallBack {
             update_property_success, upload_property_success -> {
                 val property = (responseBody as? UpdatePropertyResponse)!!.data
                 repoCallBack?.onUpdateSuccess(property)
+            }
+            upload_picture_success -> {
+                val pictureResponse = (responseBody as? UploadPictureResponse)!!.data
+                val url = pictureResponse.location
+                repoCallBack?.onUploadImageSuccess(url)
             }
         }
     }
@@ -93,11 +92,11 @@ class PropertyRepository : APICallCenter.APICallBack {
         readAllProperty()
     }
 
-    suspend fun uploadImage(file: InputStream) {
-        withContext(Dispatchers.IO) {
-            APICallCenter.uploadImage(instance, file)
+    fun uploadImage(file: InputStream) {
 
-        }
+        APICallCenter.uploadImage(instance, file)
+
+
     }
 
     suspend fun getMyProperty(user: User) {
@@ -112,6 +111,8 @@ class PropertyRepository : APICallCenter.APICallBack {
             APICallCenter.uploadProperty(instance, uploadPropertyBody)
         }
     }
+
+
 
 
 }

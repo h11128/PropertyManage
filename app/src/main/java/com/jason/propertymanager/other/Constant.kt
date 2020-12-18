@@ -7,6 +7,7 @@ const val id_landlord = 1234
 const val id_manager = 1235
 const val id_tenant = 1236
 const val id_vendor = 1237
+const val default_string = "random"
 const val password_error = "password length must greater than 5"
 const val username_error = "email must contain @ and not blank"
 const val login_success = "login success"

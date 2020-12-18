@@ -1,5 +1,6 @@
 package com.jason.propertymanager.data.network
 
+import android.util.Log
 import com.jason.propertymanager.data.model.*
 import com.jason.propertymanager.other.*
 import okhttp3.MediaType
@@ -196,7 +197,8 @@ class APICallCenter {
             val requestFile = RequestBody.create(MediaType.parse("image/*"), image.readBytes())
             //val requestFile = RequestBodyUtil.create(MediaType.parse("image/*"), image)
             //val requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), image)
-            val body = MultipartBody.Part.createFormData("image", "abac", requestFile)
+            Log.d(tag_d, "anasd")
+            val body = MultipartBody.Part.createFormData("image", "abac.jpg", requestFile)
             api.uploadPicture(body).enqueue(object : Callback<UploadPictureResponse> {
                 override fun onResponse(
                     call: Call<UploadPictureResponse>,

@@ -1,5 +1,7 @@
 package com.jason.propertymanager.data.model
 
+import com.jason.propertymanager.other.default_string
+
 data class RegisterBody(
     val email: String,
     val name: String,
@@ -13,16 +15,15 @@ data class LoginBody(
 )
 
 data class UploadPropertyBody(
-    val __v: Int,
-    val address: String,
-    val city: String,
-    val country: String,
-    val image: String,
-    val latitude: String,
-    val longitude: String,
+    val address: String = default_string,
+    val city: String = default_string,
+    val country: String = default_string,
+    val image: String = default_string,
+    val latitude: String = default_string,
+    val longitude: String = default_string,
     val mortageInfo: Boolean,
     val propertyStatus: Boolean,
-    val purchasePrice: String,
+    val purchasePrice: String = default_string,
     val state: String,
     val userId: String,
     val userType: String

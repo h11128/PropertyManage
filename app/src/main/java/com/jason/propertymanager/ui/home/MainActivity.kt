@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navView: NavigationView
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var userViewModel: UserViewModel
-    private lateinit var user: User
+    lateinit var user: User
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mainBinding = ActivityMainBinding.inflate(layoutInflater)
@@ -53,7 +53,6 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.nav_host_fragment, PropertyAddFragment())
                 .commitNow()
-            selectImage()
         }
         drawerLayout = mainBinding.drawerLayoutMain
         navView = mainBinding.navViewMain
@@ -94,29 +93,6 @@ class MainActivity : AppCompatActivity() {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
         return true
-    }
-
-    private fun selectImage(){
-        val intent = Intent()
-        intent.type = "image/*"
-        intent.action = Intent.ACTION_GET_CONTENT
-        startActivityForResult(intent, REQUEST_CODE_LOAD_IMAGE)
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == REQUEST_CODE_LOAD_IMAGE && resultCode == RESULT_OK){
-            val uri = data?.data
-            if (uri != null){
-                val inputSteam = contentResolver.openInputStream(uri)
-
-
-                val propertyViewModel = ViewModelProvider(this).get(PropertyViewModel::class.java)
-                propertyViewModel.upload(inputSteam!!)
-            }
-            Log.d(tag_d, uri.toString())
-
-        }
     }
 
     override fun onSupportNavigateUp(): Boolean {

@@ -3,4 +3,5 @@
     <string name="login">login</string>
     <string name="already_register_login">Already register? Login</string>
     <string name="collect_rent">Collect Rent</string>
+    <string name="step_1_property_address">Step 1: Property Address</string>
 </resources>

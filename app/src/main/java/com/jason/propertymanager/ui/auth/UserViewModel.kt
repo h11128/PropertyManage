@@ -65,8 +65,11 @@ class UserViewModel : ViewModel(), UserRepository.RepoCallBack {
 
     private fun checkUser() {
         viewModelScope.launch{
-            currentUser.value = userRepository.getUsers()!![0]
-            Log.d(tag_d, "check login, current User ${currentUser.value!!}")
+            val users = userRepository.getUsers()
+            if (users != null && users.size == 1){
+                currentUser.value = users[0]
+            }
+            Log.d(tag_d, "check login, current User ${currentUser.value}")
         }
     }
 

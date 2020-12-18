@@ -43,9 +43,26 @@
     <string name="referer_email">Referer email</string>
     <string name="collect_rent">Collect Rent</string>
     <string name="name">name</string>
+
     <string name="add_property">add property</string>
     <string name="delete_property">delete property</string>
     <string name="fab">fab</string>
     <string name="what_type_of_user_you_are">What type of user you are?</string>
     <string name="modify_property">modify property</string>
+    <string name="step_1_property_address">Step 1: Property Address</string>
+    <string name="address">Address</string>
+    <string name="city">City</string>
+    <string name="state_province">State/Province</string>
+    <string name="country">Country</string>
+    <string name="step_2_property_details">Step 2: Property Details</string>
+    <string name="purchase_price">Purchase Price</string>
+    <string name="rent_status">Rent Status</string>
+    <string name="mortaged">Mortaged</string>
+    <string name="step_3_property_image">Step 3: Property Image</string>
+    <string name="add_photo">add photo</string>
+    <string name="take_photo">take photo</string>
+    <string name="step_4_submit">Step 4: Submit</string>
+    <string name="submit">submit</string>
+    <string name="image_in_imagelist">image in imageList</string>
+    <string name="image_in_image_list">image_in_image_list</string>
 </resources>
