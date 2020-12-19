@@ -14,6 +14,7 @@ import com.jason.propertymanager.data.model.RegisterBody
 import com.jason.propertymanager.databinding.FragmentRegisterTenantBinding
 import com.jason.propertymanager.other.register_success
 import com.jason.propertymanager.other.tag_d
+import com.jason.propertymanager.other.tenant_string
 import com.jason.propertymanager.ui.auth.UserViewModel
 import com.jason.propertymanager.ui.auth.login.LoginActivity
 
@@ -44,13 +45,14 @@ class RegisterTenantFragment : Fragment() {
         })
 
         binding.buttonRegister.setOnClickListener {
-            val email = binding.editUsername.text.toString()
+            val name = binding.editUsername.text.toString()
             val password = binding.editConfirmPassword.text.toString()
             val password1 = binding.editPassword.text.toString()
-            val name = binding.editRefererEmail.text.toString()
-            val type = "tenant"
+            val email = binding.editEmail.text.toString()
+            val landlordEmail = binding.editLandlord.text.toString()
+            val type = tenant_string
             if (password == password1) {
-                val registerBody = RegisterBody(email, name, password, type)
+                val registerBody = RegisterBody(email, name, password, type, landlordEmail)
                 userViewModel.register(registerBody)
             }
             else{

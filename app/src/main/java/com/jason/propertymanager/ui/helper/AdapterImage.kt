@@ -1,4 +1,4 @@
-package com.jason.propertymanager.ui.property
+package com.jason.propertymanager.ui.helper
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -17,7 +17,7 @@ import com.squareup.picasso.Target
 import kotlinx.coroutines.*
 import java.lang.Exception
 
-class ImageListAdapter() : RecyclerView.Adapter<ImageListAdapter.MyViewHolder>() {
+class AdapterImage : RecyclerView.Adapter<AdapterImage.MyViewHolder>() {
     var mList = ArrayList<String>()
     private lateinit var mContext: Context
     lateinit var binding: AdapterImageBinding
@@ -35,7 +35,7 @@ class ImageListAdapter() : RecyclerView.Adapter<ImageListAdapter.MyViewHolder>()
         val button = binding.buttonClose
         val target: Target = object: Target{
             override fun onBitmapLoaded(bitmap: Bitmap?, from: Picasso.LoadedFrom?) {
-                textView.text = "$load_status_4, loaded from $from"
+                textView.text = "$load_status_4_success, loaded from $from"
                 CoroutineScope(Dispatchers.Main).launch{
                     delay(1400L)
                 }
@@ -49,7 +49,7 @@ class ImageListAdapter() : RecyclerView.Adapter<ImageListAdapter.MyViewHolder>()
             }
 
             override fun onBitmapFailed(e: Exception?, errorDrawable: Drawable?) {
-                textView.text = load_status_5
+                textView.text = load_status_5_fail
                 CoroutineScope(Dispatchers.Main).launch{
                     withContext(Dispatchers.IO){
                         delay(1000L)
@@ -65,7 +65,7 @@ class ImageListAdapter() : RecyclerView.Adapter<ImageListAdapter.MyViewHolder>()
             }
 
             override fun onPrepareLoad(placeHolderDrawable: Drawable?) {
-                textView.text = load_status_2
+                textView.text = load_status_2_onLoading
                 progressBar.visibility = View.VISIBLE
                 textView.visibility = View.VISIBLE
                 imageView.visibility = View.GONE
@@ -75,13 +75,13 @@ class ImageListAdapter() : RecyclerView.Adapter<ImageListAdapter.MyViewHolder>()
             }
         }
         fun bind(item: String) {
-            if (item == load_status_1){
-                textView.text = load_status_1
+            if (item == load_status_1_begin){
+                textView.text = load_status_1_begin
                 progressBar.visibility = View.VISIBLE
                 textView.visibility = View.VISIBLE
                 imageView.visibility = View.GONE
                 button.bringToFront()
-                Log.d(tag_d, "bind $load_status_1")
+                Log.d(tag_d, "bind $load_status_1_begin")
             }
             else{
                 Picasso.get().load(item).resize(400, 400).centerCrop().error(R.drawable.ic_baseline_error_24)
@@ -120,7 +120,7 @@ class ImageListAdapter() : RecyclerView.Adapter<ImageListAdapter.MyViewHolder>()
         notifyDataSetChanged()
     }
 
-    fun removeItem(position: Int) {
+    private fun removeItem(position: Int) {
         mList.removeAt(position)
         notifyDataSetChanged()
     }

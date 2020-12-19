@@ -1,8 +1,6 @@
 package com.jason.propertymanager.ui.home
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
@@ -18,12 +16,7 @@ import com.jason.propertymanager.R
 import com.jason.propertymanager.data.model.User
 import com.jason.propertymanager.databinding.ActivityMainBinding
 import com.jason.propertymanager.databinding.NavHeaderMainBinding
-import com.jason.propertymanager.other.REQUEST_CODE_LOAD_IMAGE
-import com.jason.propertymanager.other.tag_d
 import com.jason.propertymanager.ui.auth.UserViewModel
-import com.jason.propertymanager.ui.auth.login.LoginActivity
-import com.jason.propertymanager.ui.property.PropertyAddFragment
-import com.jason.propertymanager.ui.property.PropertyViewModel
 
 
 class MainActivity : AppCompatActivity() {
@@ -49,11 +42,7 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(mainBinding.appBarMain.toolbar)
 
-        mainBinding.appBarMain.fab.setOnClickListener {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.nav_host_fragment, PropertyAddFragment())
-                .commitNow()
-        }
+
         drawerLayout = mainBinding.drawerLayoutMain
         navView = mainBinding.navViewMain
         val navHeaderMainBinding = NavHeaderMainBinding.bind(navView.getHeaderView(0))
@@ -99,10 +88,4 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
-    override fun onBackPressed() {
-        super.onBackPressed()
-        val userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
-        userViewModel.logOut()
-        startActivity(Intent(this, LoginActivity::class.java))
-    }
 }

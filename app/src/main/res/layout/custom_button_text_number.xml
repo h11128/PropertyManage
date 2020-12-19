@@ -28,7 +28,7 @@
         android:gravity="center"
         android:text="@string/initial_text"
         android:textColor="@color/white"
-        android:textSize="12sp"
+        android:textSize="15sp"
         android:visibility="gone"/>
     <TextView
         android:id="@+id/text_btn_title"

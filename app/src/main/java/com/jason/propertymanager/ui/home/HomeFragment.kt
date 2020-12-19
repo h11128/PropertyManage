@@ -1,16 +1,21 @@
 package com.jason.propertymanager.ui.home
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.jason.propertymanager.R
+import com.jason.propertymanager.data.model.User
 import com.jason.propertymanager.databinding.FragmentHomeBinding
+import com.jason.propertymanager.ui.auth.UserViewModel
+import com.jason.propertymanager.ui.property.PropertyViewModel
 
 class HomeFragment : Fragment() {
 
@@ -18,6 +23,12 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private lateinit var navController: NavController
+    private var user: User? = null
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+    }
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
@@ -34,6 +45,19 @@ class HomeFragment : Fragment() {
 
         homeViewModel.text.observe(viewLifecycleOwner, {
             textView.text = it
+        })
+        val propertyViewModel: PropertyViewModel by activityViewModels()
+        val userViewModel = ViewModelProvider(requireActivity()).get(UserViewModel::class.java)
+        userViewModel.currentUser.observe(viewLifecycleOwner, {
+            if (it!= null){
+                user = it
+                propertyViewModel.user = user
+            }
+        })
+
+
+        propertyViewModel.property.observe(viewLifecycleOwner, {
+            binding.customBTNProperty.number = it.size
         })
         return root
     }
@@ -59,4 +83,6 @@ class HomeFragment : Fragment() {
         }
 
     }
+
+    
 }

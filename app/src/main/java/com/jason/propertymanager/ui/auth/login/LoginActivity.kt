@@ -13,10 +13,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.jason.propertymanager.R
 import com.jason.propertymanager.databinding.ActivityLoginBinding
-import com.jason.propertymanager.other.password_error
 import com.jason.propertymanager.other.tag_d
 import com.jason.propertymanager.other.url_logo
-import com.jason.propertymanager.other.username_error
 import com.jason.propertymanager.ui.auth.UserViewModel
 import com.jason.propertymanager.ui.auth.register.RegisterActivity
 import com.jason.propertymanager.ui.home.MainActivity

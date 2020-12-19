@@ -63,12 +63,13 @@
     <string name="take_photo">take photo</string>
     <string name="step_4_submit">Step 4: Submit</string>
     <string name="submit">submit</string>
-    <string name="image_in_imagelist">image in imageList</string>
     <string name="image_in_image_list">image_in_image_list</string>
     <string name="loading_image_from_api">"Loading Image from API"</string>
     <string name="cover_of_property">cover of property</string>
     <string name="loading_progress">loading progress</string>
     <string name="close">close</string>
-    <string name="loading_progress">loading progress</string>
     <string name="get_current_location">get current location</string>
+    <string name="default_string">random string</string>
+    <string name="Username">UserName</string>
+    <string name="landlord_email">LandLord Email</string>
 </resources>

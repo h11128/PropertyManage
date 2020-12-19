@@ -71,3 +71,13 @@ Lapp/src/main/java/com/jason/propertymanager/ui/document/DocumentViewModel.kt,3
 Xapp/src/main/java/com/jason/propertymanager/ui/auth/register/RegisterLandlordFragment.kt,8\b\8b8da9ae4546822fdc599316d7f6d427a4bda98f
 }
 Mapp/src/androidTest/java/com/jason/propertymanager/ExampleInstrumentedTest.kt,d\9\d971c87c9912c439bba868dcc694c28fed0905cb
+b
+2app/src/main/res/drawable/ic_baseline_error_24.xml,0\d\0dba5a7482f0969b5ef821bb5b04d243df3735b1
+b
+2app/src/main/res/drawable/ic_baseline_close_24.xml,5\b\5b14537d1fdb1402316ac58f3544f15fc5a2484c
+t
+Dapp/src/main/java/com/jason/propertymanager/ui/home/HomeViewModel.kt,5\9\59dbd4ae4a4fe95d8115788013a5695b8e299772
+u
+Eapp/src/main/java/com/jason/propertymanager/ui/helper/AdapterImage.kt,4\b\4b4ea5020bd0ad33efcba78adfa1c1fa6b97bc33
+x
+Happ/src/main/java/com/jason/propertymanager/ui/helper/AdapterProperty.kt,4\0\40171ab1111e3a19a256843b2d858edf121e1da3

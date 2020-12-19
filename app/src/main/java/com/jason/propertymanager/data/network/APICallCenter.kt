@@ -1,6 +1,5 @@
 package com.jason.propertymanager.data.network
 
-import android.util.Log
 import com.jason.propertymanager.data.model.*
 import com.jason.propertymanager.other.*
 import okhttp3.MediaType

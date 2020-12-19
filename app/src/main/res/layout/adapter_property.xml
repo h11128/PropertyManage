@@ -3,66 +3,80 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardElevation="8dp"
-    app:cardCornerRadius="8dp"
+    android:layout_margin="15dp"
     android:padding="15dp"
-    android:layout_margin="15dp">
+    app:cardCornerRadius="8dp"
+    app:cardElevation="8dp"
+    android:layout_gravity="center_horizontal">
+
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center">
+
         <ImageButton
-            android:id="@+id/button_close"
-            android:layout_margin="10dp"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
-            android:src="@drawable/ic_baseline_close_24"
-            android:tint="@color/black"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="10dp"
+            android:id="@+id/button_close"
             android:backgroundTint="@color/white"
-            android:contentDescription="@string/close">
-        </ImageButton>
+            android:contentDescription="@string/close"
+            android:src="@drawable/ic_baseline_close_24"
+            android:tint="@color/black" />
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:gravity="center">
-            <LinearLayout
+            android:id="@+id/linear_loading_section"
+            android:gravity="center"
+            >
+
+            <ProgressBar
+                android:id="@+id/progress"
+                android:layout_width="match_parent"
+                android:layout_height="180dp" />
+
+            <TextView
+                android:id="@+id/text_progress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/linear_loading_section"
-                android:orientation="vertical">
-                <ProgressBar
-                    android:layout_width="match_parent"
-                    android:layout_height="180dp"
-                    android:id="@+id/progress">
-                </ProgressBar>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/text_progress"
-                    android:textSize="20sp"
-                    android:textColor="@color/black"
-                    android:text="@string/loading_progress">
-                </TextView>
-            </LinearLayout>
+                android:text="@string/loading_progress"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/linear_property_section"
+            android:orientation="vertical"
+            android:visibility="gone">
+
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/image_property"
-                android:contentDescription="@string/cover_of_property">
-            </ImageView>
+                android:contentDescription="@string/cover_of_property" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/text_price_title">
-            </TextView>
+                android:text="@string/default_string"
+                android:id="@+id/text_location"
+                android:gravity="center"/>
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/text_location">
-            </TextView>
+                android:id="@+id/text_price_title"
+                android:text="@string/default_string"
+                android:gravity="center"/>
+
 
 
 

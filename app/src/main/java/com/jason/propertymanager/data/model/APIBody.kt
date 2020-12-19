@@ -6,7 +6,8 @@ data class RegisterBody(
     val email: String,
     val name: String,
     val password: String,
-    val type: String
+    val type: String,
+    val landlordEmail: String = email
 )
 
 data class LoginBody(

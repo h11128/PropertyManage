@@ -12,6 +12,7 @@ import androidx.fragment.app.activityViewModels
 import com.jason.propertymanager.R
 import com.jason.propertymanager.data.model.RegisterBody
 import com.jason.propertymanager.databinding.FragmentRegisterLanlordBinding
+import com.jason.propertymanager.other.landlord_string
 import com.jason.propertymanager.other.register_success
 import com.jason.propertymanager.other.tag_d
 import com.jason.propertymanager.ui.auth.UserViewModel
@@ -47,7 +48,7 @@ class RegisterLandlordFragment : Fragment() {
             val password = binding.editConfirmPassword.text.toString()
             val password1 = binding.editPassword.text.toString()
             val name = binding.editName.text.toString()
-            val type = "landlord"
+            val type = landlord_string
             if (password == password1) {
                 val registerBody = RegisterBody(email, name, password, type)
                 userViewModel.register(registerBody)
@@ -61,5 +62,6 @@ class RegisterLandlordFragment : Fragment() {
             startActivity(Intent(requireContext(), LoginActivity::class.java))
         }
     }
+
 
 }

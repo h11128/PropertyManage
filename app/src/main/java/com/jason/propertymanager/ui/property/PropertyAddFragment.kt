@@ -10,16 +10,17 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jason.propertymanager.R
+import com.jason.propertymanager.data.model.Property.Companion.imageListToString
 import com.jason.propertymanager.data.model.UploadPropertyBody
 import com.jason.propertymanager.data.model.User
 import com.jason.propertymanager.databinding.FragmentPropertyAddBinding
 import com.jason.propertymanager.other.REQUEST_CODE_LOAD_IMAGE
 import com.jason.propertymanager.other.default_string
-import com.jason.propertymanager.other.load_status_1
+import com.jason.propertymanager.other.load_status_1_begin
 import com.jason.propertymanager.other.tag_d
+import com.jason.propertymanager.ui.helper.AdapterImage
 import com.jason.propertymanager.ui.home.MainActivity
 
 class PropertyAddFragment : Fragment() {
@@ -27,7 +28,7 @@ class PropertyAddFragment : Fragment() {
     private var _binding: FragmentPropertyAddBinding? = null
     private val binding get() = _binding!!
     private var user: User? = null
-    private lateinit var imageListAdapter: ImageListAdapter
+    private lateinit var adapterImage: AdapterImage
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -49,21 +50,19 @@ class PropertyAddFragment : Fragment() {
         init()
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-    }
-
     private fun init() {
         if (user != null){
             binding.buttonSubmit.isEnabled = true
         }
-        imageListAdapter = ImageListAdapter()
+        adapterImage = AdapterImage()
         binding.recyclerPropertyImageList.apply {
-            adapter = imageListAdapter
+            adapter = adapterImage
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         }
+        propertyViewModel.user = user
+
         propertyViewModel.imageList.observe(viewLifecycleOwner, {
-            imageListAdapter.refreshDataList(it!!)
+            adapterImage.refreshDataList(it!!)
             Log.d(tag_d, "observe imageList, size ${it.size}")
             if (it.isNotEmpty()){
                 binding.recyclerPropertyImageList.visibility = View.VISIBLE
@@ -75,7 +74,7 @@ class PropertyAddFragment : Fragment() {
         })
 
 /*        propertyViewModel.imageListSize.observe(viewLifecycleOwner, {
-            imageListAdapter.refreshDataList(propertyViewModel.imageList)
+            adapterImage.refreshDataList(propertyViewModel.imageList)
             Log.d(tag_d, "observe imageList, size ${it}")
             if (it > 0){
                 binding.recyclerPropertyImageList.visibility = View.VISIBLE
@@ -102,7 +101,7 @@ class PropertyAddFragment : Fragment() {
             val propertyStatus = binding.checkboxRentStatus.isChecked
             val userId = user?._id!!
             val userType = user?.type!!
-            val image = imageListToString(imageListAdapter.mList)
+            val image = imageListToString(adapterImage.mList)
             val uploadPropertyBody = UploadPropertyBody(
                 address,
                 city,
@@ -118,6 +117,13 @@ class PropertyAddFragment : Fragment() {
                 userType
             )
             propertyViewModel.addProperty(uploadPropertyBody)
+            propertyViewModel.imageList.value = arrayListOf()
+            //propertyViewModel.actionMessage = load_status_1_begin
+            propertyViewModel.property.observe(viewLifecycleOwner, {
+                Log.d(tag_d, "observe size change in property add fragment ${it?.size}")
+                activity?.onBackPressed()
+            })
+
         }
     }
 
@@ -134,34 +140,11 @@ class PropertyAddFragment : Fragment() {
             val uri = data?.data
             if (uri != null) {
                 val inputSteam = activity?.contentResolver?.openInputStream(uri)
-                imageListAdapter.updateItem(imageListAdapter.itemCount, load_status_1)
-                binding.recyclerPropertyImageList.scrollToPosition(imageListAdapter.itemCount)
+                adapterImage.updateItem(adapterImage.itemCount, load_status_1_begin)
+                binding.recyclerPropertyImageList.scrollToPosition(adapterImage.itemCount - 1)
                 propertyViewModel.upload(inputSteam!!)
             }
         }
-    }
-
-    companion object {
-        fun imageListToString(imageList: ArrayList<String>): String {
-            return if (imageList.size == 0) {
-                ""
-            } else if (imageList.size == 1) {
-                imageList[0]
-            } else {
-                var text = ""
-                for (i in imageList.indices - 1) {
-                    text += imageList[i] + ","
-                }
-                text += imageList[imageList.size - 1]
-                text
-            }
-        }
-
-        fun imageStringToImageList(imageString: String): List<String> {
-            return imageString.split(",") as ArrayList<String>
-        }
-
-
     }
 
 

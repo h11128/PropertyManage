@@ -21,8 +21,8 @@ class CustomBTN(mContext: Context, attrs: AttributeSet? = null) : ConstraintLayo
             if (value > 0) {
                 textNumber.visibility = View.VISIBLE
                 textNumber.text = value.toString()
-                imageView.setColorFilter(this.resources.getColor(R.color.green))
-                textTitle.setTextColor(this.resources.getColor(R.color.green))
+                imageView.setColorFilter(this.resources.getColor(R.color.darkGreen))
+                textTitle.setTextColor(this.resources.getColor(R.color.darkGreen))
             } else {
                 textNumber.visibility = View.GONE
                 imageView.setColorFilter(this.resources.getColor(R.color.black))
