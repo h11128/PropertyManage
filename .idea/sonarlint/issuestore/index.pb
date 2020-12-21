@@ -85,12 +85,8 @@ Z
 *app/src/main/res/layout/activity_login.xml,1\f\1f7e901185d74bf05f9fcb38f9ed35ea78cd4c6e
 Y
 )app/src/main/res/layout/adapter_image.xml,e\b\ebab0ae1c1f0a6f161e126d766053335f6124200
-\
-,app/src/main/res/layout/adapter_property.xml,f\4\f40cdb4625a7b00284b22a413ae9adeb4fd71996
 X
 (app/src/main/res/layout/app_bar_main.xml,6\f\6f97cd8a191d695dc0396291b7e88ceff15e43bb
-]
--app/src/main/res/layout/fragment_property.xml,8\b\8b79cfa55761c1066c4642d3b81eb3568775cdbd
 e
 5app/src/main/res/layout/fragment_register_lanlord.xml,e\e\ee56d9cf6fea2a2ab35b432fd81d51a3481a900c
 d

@@ -50,7 +50,6 @@ class PropertyAddFragment : Fragment() {
     private var user: User? = null
     private lateinit var adapterImage: AdapterImage
     private lateinit var fusedLocationClient: FusedLocationProviderClient
-    private lateinit var geoCoder: Geocoder
     var latitude: Double? = null
     var longitude: Double? = null
 
@@ -150,24 +149,18 @@ class PropertyAddFragment : Fragment() {
         }
         propertyViewModel.locationResult.observe(viewLifecycleOwner, {
             if (it != null){
-                updateEditLocation(it)
+                val location = it
+                latitude = location.latitude
+                longitude = location.longitude
+                val geoCoder = Geocoder(requireContext(), Locale.getDefault())
+
+                val addresses = geoCoder.getFromLocation(latitude!!, longitude!!, 1)
+                binding.editAddress.setText(addresses[0].getAddressLine(0))
+                binding.editCity.setText(addresses[0].locality)
+                binding.editState.setText(addresses[0].adminArea)
+                binding.editCountry.setText(addresses[0].countryName)
             }
         })
-
-
-    }
-
-
-    private fun updateEditLocation(location: Location){
-        latitude = location.latitude
-        longitude = location.longitude
-        geoCoder = Geocoder(requireContext(), Locale.getDefault())
-
-        val addresses = geoCoder.getFromLocation(latitude!!, longitude!!, 1)
-        binding.editAddress.setText(addresses[0].getAddressLine(0))
-        binding.editCity.setText(addresses[0].locality)
-        binding.editState.setText(addresses[0].adminArea)
-        binding.editCountry.setText(addresses[0].countryName)
     }
 
     private fun selectImage() {
