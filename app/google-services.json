@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "425068071928",
+    "firebase_url": "https://propertymanager-633e6-default-rtdb.firebaseio.com",
+    "project_id": "propertymanager-633e6",
+    "storage_bucket": "propertymanager-633e6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:425068071928:android:175fe364ee94e75a6b640d",
+        "android_client_info": {
+          "package_name": "com.jason.propertymanager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "425068071928-87dk3fhftpnngd1b4sobhm74ftvnhq5t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeBOfUHcHS2evV5jr_RqCef6GaCkWANOw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "425068071928-87dk3fhftpnngd1b4sobhm74ftvnhq5t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

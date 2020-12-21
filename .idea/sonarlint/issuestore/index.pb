@@ -81,3 +81,17 @@ u
 Eapp/src/main/java/com/jason/propertymanager/ui/helper/AdapterImage.kt,4\b\4b4ea5020bd0ad33efcba78adfa1c1fa6b97bc33
 x
 Happ/src/main/java/com/jason/propertymanager/ui/helper/AdapterProperty.kt,4\0\40171ab1111e3a19a256843b2d858edf121e1da3
+Z
+*app/src/main/res/layout/activity_login.xml,1\f\1f7e901185d74bf05f9fcb38f9ed35ea78cd4c6e
+Y
+)app/src/main/res/layout/adapter_image.xml,e\b\ebab0ae1c1f0a6f161e126d766053335f6124200
+\
+,app/src/main/res/layout/adapter_property.xml,f\4\f40cdb4625a7b00284b22a413ae9adeb4fd71996
+X
+(app/src/main/res/layout/app_bar_main.xml,6\f\6f97cd8a191d695dc0396291b7e88ceff15e43bb
+]
+-app/src/main/res/layout/fragment_property.xml,8\b\8b79cfa55761c1066c4642d3b81eb3568775cdbd
+e
+5app/src/main/res/layout/fragment_register_lanlord.xml,e\e\ee56d9cf6fea2a2ab35b432fd81d51a3481a900c
+d
+4app/src/main/res/layout/fragment_register_tenant.xml,e\d\ed5b393a57596859dde8454a802fc00a1595c39d

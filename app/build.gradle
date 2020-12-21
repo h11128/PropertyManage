@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
 }
 apply plugin: 'kotlin-kapt'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 30
@@ -74,6 +75,16 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
 
+    // Import the BoM for the Firebase platform
+    implementation platform('com.google.firebase:firebase-bom:26.1.1')
+    implementation 'com.google.firebase:firebase-database-ktx'
+    implementation 'com.google.firebase:firebase-auth-ktx'
+
+    // Location
+    implementation 'com.google.android.gms:play-services-location:17.1.0'
+
+
+    // permission
     implementation 'com.karumi:dexter:6.2.2'
 
     // Network
