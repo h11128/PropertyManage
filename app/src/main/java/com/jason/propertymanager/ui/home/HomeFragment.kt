@@ -2,6 +2,7 @@ package com.jason.propertymanager.ui.home
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,8 +15,10 @@ import androidx.navigation.findNavController
 import com.jason.propertymanager.R
 import com.jason.propertymanager.data.model.User
 import com.jason.propertymanager.databinding.FragmentHomeBinding
+import com.jason.propertymanager.other.tag_d
 import com.jason.propertymanager.ui.auth.UserViewModel
 import com.jason.propertymanager.ui.property.PropertyViewModel
+import com.jason.propertymanager.ui.todo.TodoViewModel
 
 class HomeFragment : Fragment() {
 
@@ -47,6 +50,9 @@ class HomeFragment : Fragment() {
             textView.text = it
         })
         val propertyViewModel: PropertyViewModel by activityViewModels()
+        propertyViewModel.property.observe(viewLifecycleOwner, {
+            binding.customBTNProperty.number = it.size
+        })
         val userViewModel = ViewModelProvider(requireActivity()).get(UserViewModel::class.java)
         userViewModel.currentUser.observe(viewLifecycleOwner, {
             if (it!= null){
@@ -55,10 +61,14 @@ class HomeFragment : Fragment() {
             }
         })
 
+        val todoViewModel = ViewModelProvider(this).get(TodoViewModel::class.java)
+        binding.customBTNTodo.activeColor = this.resources.getColor(R.color.red)
+        todoViewModel.todoList.observe(viewLifecycleOwner, {
+            binding.customBTNTodo.number = it.size
 
-        propertyViewModel.property.observe(viewLifecycleOwner, {
-            binding.customBTNProperty.number = it.size
         })
+
+
         return root
     }
 

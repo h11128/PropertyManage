@@ -72,4 +72,6 @@
     <string name="default_string">random string</string>
     <string name="Username">UserName</string>
     <string name="landlord_email">LandLord Email</string>
+    <string name="you_finished_all_the_todos">You finished all the todos!</string>
+    <string name="button_todo_detail">button todo detail</string>
 </resources>
