@@ -1,5 +1,6 @@
 package com.jason.propertymanager.ui.property
 
+import android.location.Location
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -12,7 +13,7 @@ import com.jason.propertymanager.other.tag_d
 import kotlinx.coroutines.launch
 import java.io.InputStream
 
-class PropertyViewModel : ViewModel(), PropertyRepository.RepoCallBack {
+class PropertyViewModel : ViewModel(), PropertyRepository.RepoCallBack, LocationRepository.LocationResultCallBack {
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is gallery Fragment"
@@ -23,6 +24,13 @@ class PropertyViewModel : ViewModel(), PropertyRepository.RepoCallBack {
     private val repo = PropertyRepository().apply {
         repoCallBack = this@PropertyViewModel
     }
+
+    var locationRepo: LocationRepository? = null
+
+    val locationResult = MutableLiveData<Location?>()
+
+
+
     var actionMessage: String? = null
     var user: User? = null
         set(value){
@@ -36,6 +44,7 @@ class PropertyViewModel : ViewModel(), PropertyRepository.RepoCallBack {
     init {
         property.value = arrayListOf()
         imageList.value = arrayListOf()
+        locationResult.value = null
         // read all property from database for the first time
         getMyProperty()
 
@@ -109,6 +118,10 @@ class PropertyViewModel : ViewModel(), PropertyRepository.RepoCallBack {
         Log.d(tag_d, "refresh property in view model size from ${property.value?.size} to ${repo.myPropertyList?.size}")
         val temp = repo.myPropertyList
         property.value = temp
+    }
+
+    override fun update(result: Location?) {
+        locationResult.value = result
     }
 
 }

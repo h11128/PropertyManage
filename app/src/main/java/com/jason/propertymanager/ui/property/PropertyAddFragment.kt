@@ -51,7 +51,6 @@ class PropertyAddFragment : Fragment() {
     private lateinit var adapterImage: AdapterImage
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var geoCoder: Geocoder
-    val REQUEST_CHECK_SETTINGS = -5
     var latitude: Double? = null
     var longitude: Double? = null
 
@@ -145,97 +144,25 @@ class PropertyAddFragment : Fragment() {
 
 
     private fun requestLocation() {
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
-        geoCoder = Geocoder(requireContext(), Locale.getDefault())
-        val locationCallback: LocationCallback = object: LocationCallback() {
-            override fun onLocationResult(p0: LocationResult?) {
-                super.onLocationResult(p0)
-                if (p0 == null || p0.locations.size < 0) {
-                    return
-                }
-                else {
-                    Log.d("abc", "get ${p0.locations.size} location")
-                    val location = p0.locations[p0.locations.size - 1]
-                    updateEditLocation(location)
-                    fusedLocationClient.removeLocationUpdates(this)
-                    binding.buttonGetCurrentLocation.isEnabled = true
-                }
+        propertyViewModel.locationRepo = LocationRepository(requireActivity()).apply {
+            callback = propertyViewModel
+            this.requestLocation()
+        }
+        propertyViewModel.locationResult.observe(viewLifecycleOwner, {
+            if (it != null){
+                updateEditLocation(it)
             }
-        }
-        val locationRequest: LocationRequest? = LocationRequest.create()?.apply {
-            interval = 10000
-            fastestInterval = 300
-            priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-        }
-        checkLocationSetting(locationRequest)
-        if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                requireContext(), Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            binding.buttonGetCurrentLocation.isEnabled = false
-            fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.getMainLooper())
-        }
-        else {
-            checkPermission()
-        }
+        })
+
+
     }
 
-    private fun checkLocationSetting(locationRequest: LocationRequest?) {
-
-        val builder = LocationSettingsRequest.Builder().addLocationRequest(locationRequest ?: return)
-
-        val client: SettingsClient = LocationServices.getSettingsClient(requireActivity())
-        val task: Task<LocationSettingsResponse> = client.checkLocationSettings(builder.build())
-        task.addOnSuccessListener { locationSettingsResponse ->
-            Log.d(tag_d, "location setting satisfied ${locationSettingsResponse.locationSettingsStates}")
-        }
-        task.addOnFailureListener { exception ->
-            if (exception is ResolvableApiException) {
-                try {
-                    exception.startResolutionForResult(requireActivity(), REQUEST_CHECK_SETTINGS)
-                }
-                catch (sendEx: IntentSender.SendIntentException) {
-                    Log.d(tag_d, "error ${sendEx.message}")
-                }
-            }
-        }
-    }
-
-    private fun checkPermission() {
-        Dexter.withContext(requireContext())
-            .withPermissions(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
-            .withListener(object: MultiplePermissionsListener {
-                override fun onPermissionsChecked(p0: MultiplePermissionsReport?) {
-                    if ((p0 ?: return).areAllPermissionsGranted()) {
-                        Toast.makeText(activity, "Permission granted", Toast.LENGTH_SHORT).show()
-                    }
-                    else if (p0.isAnyPermissionPermanentlyDenied) {
-                        Toast.makeText(activity, "Need Permission to get location", Toast.LENGTH_SHORT).show()
-                        val builder = AlertDialog.Builder(requireContext())
-                        builder.setMessage("Permission is needed to get location")
-                        builder.setPositiveButton("Go to Setting") { dialog, _ ->
-                            dialog.dismiss()
-                            val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-                            val uri = Uri.fromParts("package", activity?.packageName, null)
-                            intent.data = uri
-                            startActivity(intent)
-                        }
-                        builder.setNegativeButton("Cancel") { dialog, _ ->
-                            dialog.dismiss()
-                        }
-                        builder.show()
-                    }
-                }
-
-                override fun onPermissionRationaleShouldBeShown(p0: MutableList<PermissionRequest>?, p1: PermissionToken?) {
-                    p1?.continuePermissionRequest()
-                }
-            })
-            .onSameThread()
-            .check()
-    }
 
     private fun updateEditLocation(location: Location){
         latitude = location.latitude
         longitude = location.longitude
+        geoCoder = Geocoder(requireContext(), Locale.getDefault())
+
         val addresses = geoCoder.getFromLocation(latitude!!, longitude!!, 1)
         binding.editAddress.setText(addresses[0].getAddressLine(0))
         binding.editCity.setText(addresses[0].locality)
