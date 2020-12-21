@@ -74,4 +74,9 @@
     <string name="landlord_email">LandLord Email</string>
     <string name="you_finished_all_the_todos">You finished all the todos!</string>
     <string name="button_todo_detail">button todo detail</string>
+    <string name="add_todo">Add Todo</string>
+    <string name="enter_title">enter title</string>
+    <string name="todo_detail_hint">enter detail or leave blank</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
 </resources>

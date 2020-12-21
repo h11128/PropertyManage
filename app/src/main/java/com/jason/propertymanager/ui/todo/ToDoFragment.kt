@@ -49,37 +49,8 @@ class ToDoFragment : Fragment() {
             layoutManager = LinearLayoutManager(requireContext())
         }
         binding.fab.setOnClickListener {
-            val builder = AlertDialog.Builder(requireContext())
-            builder.setMessage("add todo item")
-            val todoTitle = EditText(requireContext())
-            val todoDetail = EditText(requireContext())
-            val linearLayout = LinearLayout(requireContext())
-            linearLayout.addView(todoTitle)
-            linearLayout.addView(todoDetail)
-            linearLayout.orientation = LinearLayout.VERTICAL
-
-            val lp = LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-            )
-            linearLayout.layoutParams = lp
-            todoDetail.layoutParams = lp
-            todoTitle.layoutParams = lp
-            todoTitle.hint = "enter todo title"
-            todoDetail.hint = "enter detail or leave blank"
-            builder.setView(linearLayout)
-            builder.setPositiveButton("OK") { dialogue, p1 ->
-                dialogue?.dismiss()
-                todoViewModel.updateTodo(
-                    ToDoItem(
-                        todoTitle.text.toString(),
-                        todoDetail.text.toString()
-                    )
-                )
-
-            }
-            builder.setNegativeButton("Cancel") { dialogue, p1 -> dialogue?.dismiss() }
-            builder.show()
+            val dialogFragment = TodoDialogFragment()
+            dialogFragment.showNow(requireActivity().supportFragmentManager, "dialog fragment")
         }
 
         todoViewModel.todoList.observe(viewLifecycleOwner, {
@@ -100,6 +71,7 @@ class ToDoFragment : Fragment() {
 
     override fun onStop() {
         super.onStop()
+        Log.d(tag_d, "OnStop")
         todoViewModel.onCleared()
     }
 

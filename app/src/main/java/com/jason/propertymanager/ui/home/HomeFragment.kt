@@ -41,6 +41,12 @@ class HomeFragment : Fragment() {
                 ViewModelProvider(this).get(HomeViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_home, container, false)
         _binding = FragmentHomeBinding.bind(root)
+        val todoViewModel = ViewModelProvider(this).get(TodoViewModel::class.java)
+        binding.customBTNTodo.activeColor = this.resources.getColor(R.color.red)
+        todoViewModel.todoList.observe(viewLifecycleOwner, {
+            binding.customBTNTodo.number = it.size
+
+        })
 
         val textView: TextView = binding.textHome
         navController = activity?.findNavController(R.id.nav_host_fragment)!!
@@ -61,12 +67,7 @@ class HomeFragment : Fragment() {
             }
         })
 
-        val todoViewModel = ViewModelProvider(this).get(TodoViewModel::class.java)
-        binding.customBTNTodo.activeColor = this.resources.getColor(R.color.red)
-        todoViewModel.todoList.observe(viewLifecycleOwner, {
-            binding.customBTNTodo.number = it.size
 
-        })
 
 
         return root
