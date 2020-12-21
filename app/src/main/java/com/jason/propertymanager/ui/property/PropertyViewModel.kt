@@ -70,6 +70,13 @@ class PropertyViewModel : ViewModel(), PropertyRepository.RepoCallBack, Location
             repo.uploadProperty(uploadPropertyBody)
         }
     }
+
+    fun updateProperty(uploadPropertyBody: UploadPropertyBody){
+        viewModelScope.launch {
+            repo.updateProperty(uploadPropertyBody)
+        }
+    }
+
     // send delete property request to api
     fun deleteProperty(property: Property){
         viewModelScope.launch {

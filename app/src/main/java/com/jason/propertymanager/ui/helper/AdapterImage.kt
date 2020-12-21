@@ -74,6 +74,7 @@ class AdapterImage : RecyclerView.Adapter<AdapterImage.MyViewHolder>() {
 
             }
         }
+
         fun bind(item: String) {
             if (item == load_status_1_begin){
                 textView.text = load_status_1_begin
@@ -90,6 +91,10 @@ class AdapterImage : RecyclerView.Adapter<AdapterImage.MyViewHolder>() {
             imageView.tag = target
         }
 
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return super.getItemViewType(position)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {

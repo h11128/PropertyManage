@@ -2,24 +2,25 @@ package com.jason.propertymanager.data.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.jason.propertymanager.other.Constant
 import com.jason.propertymanager.other.delimiters
 
 @Entity(tableName = "property_table")
 data class Property(
     val __v: Int,
     @PrimaryKey val _id: String,
-    val address: String,
-    val city: String,
-    val country: String,
-    val image: String,
-    val latitude: String,
-    val longitude: String,
-    val mortageInfo: Boolean,
-    val propertyStatus: Boolean,
-    val purchasePrice: String,
-    val state: String,
-    val userId: String,
-    val userType: String
+    var address: String,
+    var city: String,
+    var country: String,
+    var image: String,
+    var latitude: String,
+    var longitude: String,
+    var mortageInfo: Boolean,
+    var propertyStatus: Boolean,
+    var purchasePrice: String,
+    var state: String,
+    var userId: String,
+    var userType: String
 ) {
     fun getAddressString(): String {
         return "$address, $city, $state, $country"
@@ -62,15 +63,14 @@ data class Property(
 
         fun imageStringToImageList(imageString: String): List<String> {
             val aa = imageString.split(delimiters)
-            if (aa.isNotEmpty() && aa[0] != imageString) {
-                return aa
+            val result = arrayListOf<String>()
+            for (url in aa) {
+                if (Constant.isValidUrl(url)) {
+                    result.add(url)
+                }
             }
-            val bb = imageString.split(",")
-            return if (bb.isNotEmpty() && bb[0] != imageString) {
-                bb
-            } else {
-                arrayListOf(imageString)
-            }
+            return result
+
         }
     }
 

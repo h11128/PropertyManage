@@ -142,6 +142,30 @@ class APICallCenter {
             })
         }
 
+        fun updateProperty(callback: APICallBack, uploadPropertyBody: UploadPropertyBody) {
+            val messageCode = update_property_success
+            api.updateProperty(uploadPropertyBody.userId, uploadPropertyBody).enqueue(object :
+                Callback<UpdatePropertyResponse> {
+                override fun onResponse(
+                    call: Call<UpdatePropertyResponse>,
+                    response: Response<UpdatePropertyResponse>
+                ) {
+                    if (response.isSuccessful) {
+                        callback.notify(messageCode, response.body()!!)
+                    } else {
+                        val jObjError = JSONObject((response.errorBody() ?: return).string())
+                        val error = jObjError.getString("message")
+                        callback.notify(error, null)
+                    }
+                }
+
+                override fun onFailure(call: Call<UpdatePropertyResponse>, t: Throwable) {
+                    callback.notify("cause ${t.cause} message ${t.message}", null)
+
+                }
+            })
+        }
+
         fun deleteProperty(callback: APICallBack, propertyId: String) {
             val messageCode = delete_property_success
             api.deleteProperty(propertyId).enqueue(object :

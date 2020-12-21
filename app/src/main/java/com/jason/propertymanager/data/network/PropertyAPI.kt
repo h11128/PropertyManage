@@ -58,7 +58,7 @@ interface PropertyApi{
     fun uploadProperty(@Body body: UploadPropertyBody): Call<UpdatePropertyResponse>
 
     @PUT(endpoint_update_property)
-    fun updateProperty(@Path("id") id: String, @Body body: Property): Call<UpdatePropertyResponse>
+    fun updateProperty(@Path("id") id: String, @Body body: UploadPropertyBody): Call<UpdatePropertyResponse>
 
     @DELETE(endpoint_update_property)
     fun deleteProperty(@Path("id") id: String): Call<UpdatePropertyResponse>

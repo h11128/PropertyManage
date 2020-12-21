@@ -1,46 +1,31 @@
 package com.jason.propertymanager.ui.property
 
-import android.Manifest
-import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
-import android.content.IntentSender
-import android.content.pm.PackageManager
 import android.location.Geocoder
-import android.location.Location
-import android.net.Uri
 import android.os.Bundle
-import android.os.Looper
-import android.provider.Settings
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.gms.common.api.ResolvableApiException
-import com.google.android.gms.location.*
-import com.google.android.gms.tasks.Task
+import com.google.android.gms.location.FusedLocationProviderClient
 import com.jason.propertymanager.R
+import com.jason.propertymanager.data.model.Property
 import com.jason.propertymanager.data.model.Property.Companion.imageListToString
+import com.jason.propertymanager.data.model.Property.Companion.imageStringToImageList
 import com.jason.propertymanager.data.model.UploadPropertyBody
 import com.jason.propertymanager.data.model.User
 import com.jason.propertymanager.databinding.FragmentPropertyAddBinding
 import com.jason.propertymanager.other.REQUEST_CODE_LOAD_IMAGE
-import com.jason.propertymanager.other.default_string
+import com.jason.propertymanager.other.landlord_string
 import com.jason.propertymanager.other.load_status_1_begin
 import com.jason.propertymanager.other.tag_d
 import com.jason.propertymanager.ui.helper.AdapterImage
 import com.jason.propertymanager.ui.home.MainActivity
-import com.karumi.dexter.Dexter
-import com.karumi.dexter.MultiplePermissionsReport
-import com.karumi.dexter.PermissionToken
-import com.karumi.dexter.listener.PermissionRequest
-import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import java.util.*
 
 class PropertyAddFragment : Fragment() {
@@ -48,8 +33,8 @@ class PropertyAddFragment : Fragment() {
     private var _binding: FragmentPropertyAddBinding? = null
     private val binding get() = _binding!!
     private var user: User? = null
+    private var property: Property? = null
     private lateinit var adapterImage: AdapterImage
-    private lateinit var fusedLocationClient: FusedLocationProviderClient
     var latitude: Double? = null
     var longitude: Double? = null
 
@@ -74,23 +59,23 @@ class PropertyAddFragment : Fragment() {
     }
 
     private fun init() {
-        if (user != null){
+        if (user != null) {
             binding.buttonSubmit.isEnabled = true
         }
         adapterImage = AdapterImage()
         binding.recyclerPropertyImageList.apply {
             adapter = adapterImage
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         }
         propertyViewModel.user = user
 
         propertyViewModel.imageList.observe(viewLifecycleOwner, {
             adapterImage.refreshDataList(it!!)
             Log.d(tag_d, "observe imageList, size ${it.size}")
-            if (it.isNotEmpty()){
+            if (it.isNotEmpty()) {
                 binding.recyclerPropertyImageList.visibility = View.VISIBLE
-            }
-            else{
+            } else {
                 binding.recyclerPropertyImageList.visibility = View.GONE
 
             }
@@ -104,41 +89,58 @@ class PropertyAddFragment : Fragment() {
         binding.buttonGetCurrentLocation.setOnClickListener {
             requestLocation()
         }
-
+        initText()
         binding.buttonSubmit.setOnClickListener {
-            val address = binding.editAddress.text.toString()
-            val city = binding.editCity.text.toString()
-            val state = binding.editState.text.toString()
-            val country = binding.editCountry.text.toString()
-            val purchasePrice = binding.editPrice.text.toString()
-            val mortageInfo = binding.checkboxMortageInfo.isChecked
-            val propertyStatus = binding.checkboxRentStatus.isChecked
+
             val userId = user?._id!!
             val userType = user?.type!!
-            val image = imageListToString(adapterImage.mList)
+            val addressA = binding.editAddress.text.toString()
+            val city1 = binding.editCity.text.toString()
+            val state1 = binding.editState.text.toString()
+            val country1 = binding.editCountry.text.toString()
+            val purchasePrice1 = binding.editPrice.text.toString()
+            val mortageInfo1 = binding.checkboxMortageInfo.isChecked
+            val propertyStatus1 = binding.checkboxRentStatus.isChecked
+            val image1 = imageListToString(adapterImage.mList)
             val uploadPropertyBody = UploadPropertyBody(
-                address,
-                city,
-                country,
-                image,
+                addressA,
+                city1,
+                country1,
+                image1,
                 (latitude ?: 100.0).toString(),
                 (longitude ?: 100.0).toString(),
-                mortageInfo,
-                propertyStatus,
-                purchasePrice,
-                state,
+                mortageInfo1,
+                propertyStatus1,
+                purchasePrice1,
+                state1,
                 userId,
                 userType
             )
-            propertyViewModel.addProperty(uploadPropertyBody)
-            propertyViewModel.imageList.value = arrayListOf()
+            if (property == null) {
+                propertyViewModel.addProperty(uploadPropertyBody)
+            } else {
+                propertyViewModel.updateProperty(uploadPropertyBody)
+            }
             //propertyViewModel.actionMessage = load_status_1_begin
+            clearData()
+
             propertyViewModel.property.observe(viewLifecycleOwner, {
                 Log.d(tag_d, "observe size change in property add fragment ${it?.size}")
                 activity?.onBackPressed()
             })
 
         }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        clearData()
+
+    }
+
+    fun clearData(){
+        property = null
+        propertyViewModel.imageList.value = arrayListOf()
     }
 
 
@@ -148,7 +150,7 @@ class PropertyAddFragment : Fragment() {
             this.requestLocation()
         }
         propertyViewModel.locationResult.observe(viewLifecycleOwner, {
-            if (it != null){
+            if (it != null) {
                 val location = it
                 latitude = location.latitude
                 longitude = location.longitude
@@ -161,6 +163,25 @@ class PropertyAddFragment : Fragment() {
                 binding.editCountry.setText(addresses[0].countryName)
             }
         })
+    }
+
+    private fun initText() {
+        if (property != null) {
+            binding.editAddress.setText(property!!.address)
+            binding.editCity.setText(property!!.city)
+            binding.editState.setText(property!!.state)
+            binding.editCountry.setText(property!!.country)
+            binding.editPrice.setText(property!!.purchasePrice)
+            binding.checkboxMortageInfo.isChecked = property!!.mortageInfo
+            binding.checkboxRentStatus.isChecked = property!!.propertyStatus
+            val images = imageStringToImageList(property!!.image)
+            Log.d(tag_d, "image $images imageString ${property!!.image}")
+            for (image in images) {
+
+                propertyViewModel.imageList.value?.add(image)
+            }
+        }
+
     }
 
     private fun selectImage() {
@@ -176,10 +197,21 @@ class PropertyAddFragment : Fragment() {
             val uri = data?.data
             if (uri != null) {
                 val inputSteam = activity?.contentResolver?.openInputStream(uri)
-                adapterImage.updateItem(adapterImage.itemCount, load_status_1_begin)
+                propertyViewModel.imageList.value?.add(load_status_1_begin)
+                //adapterImage.updateItem(adapterImage.itemCount, load_status_1_begin)
                 binding.recyclerPropertyImageList.scrollToPosition(adapterImage.itemCount - 1)
                 propertyViewModel.upload(inputSteam!!)
             }
+        }
+    }
+
+    companion object {
+        fun newInstance(propertyA: Property? = null): PropertyAddFragment {
+            return PropertyAddFragment().apply {
+                property = propertyA
+            }
+
+
         }
     }
 

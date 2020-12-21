@@ -85,6 +85,12 @@ class PropertyRepository : APICallCenter.APICallBack {
         }
     }
 
+    suspend fun updateProperty(uploadPropertyBody: UploadPropertyBody) {
+        withContext(Dispatchers.IO) {
+            APICallCenter.updateProperty(instance, uploadPropertyBody)
+        }
+    }
+
     // database method
     // save a list of property in database
     private fun saveAllProperty(propertyList: ArrayList<Property>) {

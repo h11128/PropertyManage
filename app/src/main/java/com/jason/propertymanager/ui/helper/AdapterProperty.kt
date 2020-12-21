@@ -11,6 +11,7 @@ import com.jason.propertymanager.R
 import com.jason.propertymanager.data.model.Property
 import com.jason.propertymanager.databinding.AdapterPropertyBinding
 import com.jason.propertymanager.other.*
+import com.jason.propertymanager.ui.property.PropertyAddFragment
 import com.jason.propertymanager.ui.property.PropertyFragment
 import com.squareup.picasso.Picasso
 import com.squareup.picasso.Target
@@ -21,7 +22,7 @@ class AdapterProperty : RecyclerView.Adapter<AdapterProperty.MyViewHolder>() {
     private var mList: ArrayList<Property> = arrayListOf()
     var mParentFragment: PropertyFragment? = null
 
-    class MyViewHolder(itemView: View, binding: AdapterPropertyBinding) :
+    class MyViewHolder(var itemView: View, binding: AdapterPropertyBinding) :
         RecyclerView.ViewHolder(itemView) {
         val textView = binding.textProgress
         val button = binding.buttonClose
@@ -113,6 +114,7 @@ class AdapterProperty : RecyclerView.Adapter<AdapterProperty.MyViewHolder>() {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.adapter_property, parent, false)
         binding = AdapterPropertyBinding.bind(view)
+
         return MyViewHolder(view, binding)
     }
 
@@ -128,6 +130,12 @@ class AdapterProperty : RecyclerView.Adapter<AdapterProperty.MyViewHolder>() {
                     "error! try to remove position $position with adapter size ${mList.size}"
                 )
             }
+        }
+        binding.root.setOnClickListener {
+            mParentFragment?.activity?.supportFragmentManager?.beginTransaction()
+                ?.addToBackStack("propertyFragment")
+                ?.replace(R.id.nav_host_fragment, PropertyAddFragment.newInstance(mList[position]))
+                ?.commit()
         }
         holder.bind(mList[position])
 
