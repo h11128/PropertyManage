@@ -47,6 +47,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                app:activeColor="@color/darkGreen"
                 app:buttonSrc="@drawable/ic_baseline_property_24"
                 app:buttonTitle="Property" />
             <com.jason.propertymanager.ui.helper.CustomBTN
@@ -87,6 +88,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                app:activeColor="@color/red"
                 app:buttonSrc="@drawable/ic_baseline_todo_24"
                 app:buttonTitle="Todo" />
         </LinearLayout>

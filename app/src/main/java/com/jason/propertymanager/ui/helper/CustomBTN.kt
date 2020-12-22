@@ -1,6 +1,7 @@
 package com.jason.propertymanager.ui.helper
 
 import android.content.Context
+import android.graphics.ColorFilter
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
 import android.util.AttributeSet
@@ -8,36 +9,37 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat
 import com.jason.propertymanager.R
 import com.jason.propertymanager.databinding.CustomButtonTextNumberBinding
 
-class CustomBTN(mContext: Context, attrs: AttributeSet? = null) : ConstraintLayout(mContext, attrs) {
+class CustomBTN(mContext: Context, attrs: AttributeSet? = null) :
+    ConstraintLayout(mContext, attrs) {
     private var _binding: CustomButtonTextNumberBinding? = null
     val binding get() = _binding!!
     private val imageView: ImageView
     private val textTitle: TextView
     private val textNumber: TextView
-    var activeColor = this.resources.getColor(R.color.darkGreen)
-        set(value){
-            field = value
-            textNumber.background.colorFilter = PorterDuffColorFilter(activeColor, PorterDuff.Mode.SRC_IN)
-        }
-    var negativeColor = this.resources.getColor(R.color.black)
+    private var activeColor: Int? = null
+    private var negativeColor: ColorFilter? = null
+
     var number: Int = 0
         set(value) {
             field = value
             if (value > 0) {
                 textNumber.visibility = View.VISIBLE
                 textNumber.text = value.toString()
-                imageView.setColorFilter(activeColor)
-                textTitle.setTextColor(activeColor)
+                activeColor?.let {
+                    imageView.setColorFilter(it)
+                    textNumber.background.colorFilter = PorterDuffColorFilter(it, PorterDuff.Mode.SRC_IN)
+                    textTitle.setTextColor(it)
+                }
+
             } else {
                 textNumber.visibility = View.GONE
-                imageView.setColorFilter(negativeColor)
-                textTitle.setTextColor(negativeColor)
+                negativeColor?.let {
+                    imageView.colorFilter = it
+                }
             }
-
         }
 
     init {
@@ -46,14 +48,17 @@ class CustomBTN(mContext: Context, attrs: AttributeSet? = null) : ConstraintLayo
         imageView = binding.imageButtonBtn
         textTitle = binding.textBtnTitle
         textNumber = binding.textBtnNumber
+        number = 0
+        negativeColor = imageView.colorFilter
         mContext.obtainStyledAttributes(attrs, R.styleable.CustomBTN).apply {
             imageView.setImageDrawable(getDrawable(R.styleable.CustomBTN_buttonSrc))
             textTitle.text = getString(R.styleable.CustomBTN_buttonTitle)
+            activeColor = getColor(R.styleable.CustomBTN_activeColor, R.color.darkGreen)
             recycle()
         }
     }
 
-    fun setClickListener(clickListener: OnClickListener){
+    fun setClickListener(clickListener: OnClickListener) {
         this.setOnClickListener(clickListener)
     }
 

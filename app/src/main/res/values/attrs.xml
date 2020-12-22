@@ -4,6 +4,7 @@
     <declare-styleable name="CustomBTN">
         <attr name="buttonSrc" format="reference" />
         <attr name="buttonTitle" format="string" />
+        <attr name="activeColor" format="color" />
 
     </declare-styleable>
 

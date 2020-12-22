@@ -42,7 +42,6 @@ class HomeFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_home, container, false)
         _binding = FragmentHomeBinding.bind(root)
         val todoViewModel = ViewModelProvider(this).get(TodoViewModel::class.java)
-        binding.customBTNTodo.activeColor = this.resources.getColor(R.color.red)
         todoViewModel.todoList.observe(viewLifecycleOwner, {
             binding.customBTNTodo.number = it.size
 
