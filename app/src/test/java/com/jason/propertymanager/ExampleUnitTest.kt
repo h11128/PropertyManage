@@ -25,13 +25,11 @@ class ExampleUnitTest {
     fun propertyAPI_RegisterResponse(){
         val registerBody = RegisterBody("email", "name", "password", "landlord")
         Log.d(tag_d, "AVC")
-
         val callback = object : APICallCenter.APICallBack {
             override fun notify(message: String?, responseBody: Any?) {
                 Log.d(tag_d, " message $message responseBody $responseBody")
                 assertThat(responseBody).isInstanceOf(RegisterResponse::class.java)
             }
-
         }
         APICallCenter.register(callback, registerBody)
     }

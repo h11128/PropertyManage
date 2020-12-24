@@ -85,9 +85,21 @@ Z
 *app/src/main/res/layout/activity_login.xml,1\f\1f7e901185d74bf05f9fcb38f9ed35ea78cd4c6e
 Y
 )app/src/main/res/layout/adapter_image.xml,e\b\ebab0ae1c1f0a6f161e126d766053335f6124200
-X
-(app/src/main/res/layout/app_bar_main.xml,6\f\6f97cd8a191d695dc0396291b7e88ceff15e43bb
 e
 5app/src/main/res/layout/fragment_register_lanlord.xml,e\e\ee56d9cf6fea2a2ab35b432fd81d51a3481a900c
 d
 4app/src/main/res/layout/fragment_register_tenant.xml,e\d\ed5b393a57596859dde8454a802fc00a1595c39d
+r
+Bapp/src/main/java/com/jason/propertymanager/data/model/ToDoItem.kt,2\0\2020def5241f7a9b95e1a94951e3a33b2342d709
+9
+	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+S
+#app/src/main/res/values/strings.xml,d\2\d2281fbb3027de2722081a53408dd77628bf080e
+y
+Iapp/src/main/java/com/jason/propertymanager/ui/todo/TodoDialogFragment.kt,4\b\4bea3c0a704713196ff6b373211a6d1fa4c5fc98
+t
+Dapp/src/main/java/com/jason/propertymanager/ui/helper/AdapterTodo.kt,d\c\dc7ff3d1c123ab22ab1a6d770400250175a1a2eb
+u
+Eapp/src/main/java/com/jason/propertymanager/ui/todo/TodoRepository.kt,1\1\1166a7e6a763257b7e7178501e15a653a323761f
+n
+>app/src/test/java/com/jason/propertymanager/ExampleUnitTest.kt,e\7\e7df9405bbde0b59f0a64e451302d843f82c21f3
